@@ -1,9 +1,9 @@
-package com.github.richardikeda.nox3languageplugin.listeners
+package com.enterscript.noX3LanguagePlugin.listeners
 
-import com.github.richardikeda.nox3languageplugin.services.MyProjectService
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
+import com.enterscript.noX3LanguagePlugin.services.MyProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 

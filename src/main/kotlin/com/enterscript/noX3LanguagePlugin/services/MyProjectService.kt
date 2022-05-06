@@ -1,7 +1,7 @@
-package com.github.richardikeda.nox3languageplugin.services
+package com.enterscript.noX3LanguagePlugin.services
 
-import com.github.richardikeda.nox3languageplugin.MyBundle
 import com.intellij.openapi.project.Project
+import org.jetbrains.plugins.template.MyBundle
 
 class MyProjectService(project: Project) {
 

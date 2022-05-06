@@ -1,19 +1,35 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.richardikeda.nox3languageplugin</id>
-    <name>nox3-language-plugin</name>
-    <vendor>richardikeda</vendor>
+    <id>com.enterscript.noX3LanguagePlugin</id>
+    <name>Non Official X3 Language</name>
+    <vendor email="richard@enterscript.com" url="https://enterscript.com">Richard Ikeda</vendor>
+    <description><![CDATA[ Non Official X3 Plugin.<br> <em>Basic X3 editor for IntelliJ</em> ]]></description>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
+    <actions>
+        <!-- Add your actions here -->
+        <group id="NOX3Plugin.MenuAction" text="NO X3 Lang" description="Non official X3 Language">
+            <add-to-group group-id="MainMenu" anchor="last" />
+            <action class="com.enterscript.noX3LanguagePlugin.MenuAction"
+                    id="actions.noX3LanguagePlugin.MenuAction" text="NOX3 Menu Action" />
+        </group>
+    </actions>
+
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.richardikeda.nox3languageplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.richardikeda.nox3languageplugin.services.MyProjectService"/>
+        <fileType name="X3 Language"
+                  implementationClass="com.enterscript.noX3LanguagePlugin.NOX3FileType"
+                  fieldName="INSTANCE"
+                  language="X3"
+                  extensions="src"/>
+        <applicationService serviceImplementation="com.enterscript.noX3LanguagePlugin.services.MyApplicationService"/>
+        <projectService serviceImplementation="com.enterscript.noX3LanguagePlugin.services.MyProjectService"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.richardikeda.nox3languageplugin.listeners.MyProjectManagerListener"
+        <listener class="com.enterscript.noX3LanguagePlugin.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 </idea-plugin>

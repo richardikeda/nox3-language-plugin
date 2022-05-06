@@ -1,1 +1,1 @@
-rootProject.name = "nox3-language-plugin"
+rootProject.name = "nox3-language"
