@@ -1,4 +1,4 @@
-package com.enterscript.noX3LanguagePlugin
+package com.enterscript.noX3LanguagePlugin.language
 
 import com.intellij.lang.Language
 

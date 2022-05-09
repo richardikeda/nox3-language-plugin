@@ -1,6 +1,7 @@
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
 fun properties(key: String) = project.findProperty(key).toString()
 
 plugins {
@@ -14,6 +15,8 @@ plugins {
     id("org.jetbrains.changelog") version "1.3.1"
     // Gradle Qodana Plugin
     id("org.jetbrains.qodana") version "0.1.13"
+    //https://github.com/JetBrains/gradle-grammar-kit-plugin
+    id("org.jetbrains.grammarkit") version "2021.2.2"
 
 }
 
@@ -23,6 +26,7 @@ version = properties("pluginVersion")
 // Configure project's dependencies
 repositories {
     mavenCentral()
+
 }
 dependencies {
 
@@ -37,7 +41,6 @@ intellij {
     plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
 }
 
-
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     version.set(properties("pluginVersion"))
@@ -50,6 +53,17 @@ qodana {
     reportPath.set(projectDir.resolve("build/reports/inspections").canonicalPath)
     saveReport.set(true)
     showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
+}
+
+grammarKit {
+    // Version of IntelliJ patched JFlex (see the link below), Default is 1.7.0-1
+    jflexRelease.set("1.7.0-1")
+
+    // Release version, tag, or short commit hash of Grammar-Kit to use (see link below). Default is 2021.1.2
+    grammarKitRelease.set("2021.1.2")
+
+    // Optionally provide an IntelliJ version to build the classpath for GenerateParser/GenerateLexer tasks
+    intellijRelease.set("203.7717.81")
 }
 
 tasks {
@@ -68,6 +82,40 @@ tasks {
         gradleVersion = properties("gradleVersion")
     }
 
+
+    generateLexer {
+        // source flex file
+        source.set("grammar/NOX3.flex")
+
+        // target directory for lexer
+        targetDir.set("gen/com/enterscript/noX3LanguagePlugin/lexer")
+
+        // target classname, target file will be targetDir/targetClass.java
+        targetClass.set("NOX3Lexer")
+
+        // optional, path to the task-specific skeleton file. Default: none
+        //skeleton.set("/some/specific/skeleton")
+
+        // if set, plugin will remove a lexer output file before generating new one. Default: false
+        //purgeOldFiles.set(false)
+    }
+
+    generateParser {
+        // source bnf file
+        source.set("grammar/NOX3.bnf")
+
+        // optional, task-specific root for the generated files. Default: none
+        targetRoot.set("gen")
+
+        // path to a parser file, relative to the targetRoot
+        pathToParser.set("/com/enterscript/noX3LanguagePlugin/parser/X3ParserGenerated.java")
+
+        // path to a directory with generated psi files, relative to the targetRoot
+        pathToPsiRoot.set("/com/enterscript/noX3LanguagePlugin/language/psi")
+
+        // if set, the plugin will remove a parser output file and psi output directory before generating new ones. Default: false
+        purgeOldFiles.set(false)
+    }
 
     patchPluginXml {
         version.set(properties("pluginVersion"))

@@ -20,7 +20,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="X3 Language"
-                  implementationClass="com.enterscript.noX3LanguagePlugin.NOX3FileType"
+                  implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3FileType"
                   fieldName="INSTANCE"
                   language="X3"
                   extensions="src"/>
@@ -28,8 +28,8 @@
         <projectService serviceImplementation="com.enterscript.noX3LanguagePlugin.services.MyProjectService"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.enterscript.noX3LanguagePlugin.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+<!--    <applicationListeners>-->
+<!--        <listener class="com.enterscript.noX3LanguagePlugin.listeners.MyProjectManagerListener"-->
+<!--                  topic="com.intellij.openapi.project.ProjectManagerListener"/>-->
+<!--    </applicationListeners>-->
 </idea-plugin>
