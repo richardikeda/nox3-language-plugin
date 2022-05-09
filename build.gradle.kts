@@ -29,7 +29,7 @@ repositories {
 
 }
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+
 }
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
@@ -78,8 +78,6 @@ tasks {
         withType<KotlinCompile> {
             kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
         }
-
-
     }
     withType<JavaExec>{
         jvmArgs(
@@ -162,7 +160,6 @@ tasks {
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
         systemProperty("jb.privacy.policy.text", "<!--999.999-->")
         systemProperty("jb.consents.confirmation.enabled", "false")
-
     }
 
     signPlugin {
