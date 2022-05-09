@@ -29,7 +29,7 @@ repositories {
 
 }
 dependencies {
-
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
 }
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
@@ -70,13 +70,25 @@ tasks {
     // Set the JVM compatibility versions
     properties("javaVersion").let {
         withType<JavaCompile> {
-            sourceCompatibility = "11"
-            targetCompatibility = "11"
+            sourceCompatibility = JavaVersion.VERSION_11.toString()
+            targetCompatibility = JavaVersion.VERSION_11.toString()
+
+
         }
         withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
         }
+
+
     }
+    withType<JavaExec>{
+        jvmArgs(
+            "--add-exports=java.base/jdk.internal.vm=ALL-UNNAMED",
+            "--illegal-access=permit"
+        )
+    }
+
+
 
     wrapper {
         gradleVersion = properties("gradleVersion")
@@ -150,6 +162,7 @@ tasks {
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
         systemProperty("jb.privacy.policy.text", "<!--999.999-->")
         systemProperty("jb.consents.confirmation.enabled", "false")
+
     }
 
     signPlugin {
