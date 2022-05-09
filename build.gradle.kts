@@ -29,7 +29,7 @@ repositories {
 
 }
 dependencies {
-
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
 }
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
@@ -70,13 +70,39 @@ tasks {
     // Set the JVM compatibility versions
     properties("javaVersion").let {
         withType<JavaCompile> {
-            sourceCompatibility = "11"
-            targetCompatibility = "11"
+            sourceCompatibility = JavaVersion.VERSION_11.toString()
+            targetCompatibility = JavaVersion.VERSION_11.toString()
+
+
         }
         withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
         }
+
     }
+    withType<JavaExec>{
+        jvmArgs(
+            "--add-exports=java.base/jdk.internal.vm=ALL-UNNAMED",
+            "--illegal-access=permit"
+        )
+    }
+
+    /**
+     * fix for retrofit `WARNING: Illegal reflective access by retrofit2.Platform`
+     */
+    runIde {
+        jvmArgs("--add-exports", "java.base/jdk.internal.vm=ALL-UNNAMED")
+        jvmArgs("--illegal-access=permit")
+    }
+//    properties("runExecutableJar").let{
+//        withType<JavaExec>{
+//            args="--add-exports=java.base/jdk.internal.vm=ALL-UNNAMED"
+//        }
+//    }
+//    JavaExec {
+//        args 'appArg1'
+//    }
+
 
     wrapper {
         gradleVersion = properties("gradleVersion")
@@ -150,6 +176,7 @@ tasks {
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
         systemProperty("jb.privacy.policy.text", "<!--999.999-->")
         systemProperty("jb.consents.confirmation.enabled", "false")
+
     }
 
     signPlugin {

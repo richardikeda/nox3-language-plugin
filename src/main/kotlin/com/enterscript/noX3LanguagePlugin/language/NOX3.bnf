@@ -1,0 +1,21 @@
+{
+  parserClass="com.enterscript.noX3LanguagePlugin.language.parser.NOX3Parser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Bnf"
+  psiImplClassSuffix="Impl"
+
+  psiPackage="com.enterscript.noX3LanguagePlugin.language.psi"
+  psiImplPackage="com.enterscript.noX3LanguagePlugin.language.psi.impl"
+
+  elementTypeHolderClass="com.enterscript.noX3LanguagePlugin.language.psi.NOX3Types"
+  elementTypeClass="com.enterscript.noX3LanguagePlugin.language.psi.NOX3ElementType"
+  tokenTypeClass="com.enterscript.noX3LanguagePlugin.language.psi.NOX3TokenType"
+}
+
+simpleFile ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY
