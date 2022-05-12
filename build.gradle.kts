@@ -1,14 +1,13 @@
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-
 fun properties(key: String) = project.findProperty(key).toString()
 
 plugins {
     // Java support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "1.6.10"
+    id("org.jetbrains.kotlin.jvm") version "1.6.21"
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.intellij") version "1.5.3"
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
@@ -67,26 +66,28 @@ grammarKit {
 }
 
 tasks {
+    buildSearchableOptions {
+        enabled = false
+
+    }
+
     // Set the JVM compatibility versions
     properties("javaVersion").let {
         withType<JavaCompile> {
-            sourceCompatibility = JavaVersion.VERSION_11.toString()
-            targetCompatibility = JavaVersion.VERSION_11.toString()
-
-
+            sourceCompatibility = it
+            targetCompatibility = it
         }
         withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
+            kotlinOptions.jvmTarget = it
         }
     }
+
     withType<JavaExec>{
         jvmArgs(
             "--add-exports=java.base/jdk.internal.vm=ALL-UNNAMED",
             "--illegal-access=permit"
         )
     }
-
-
 
     wrapper {
         gradleVersion = properties("gradleVersion")

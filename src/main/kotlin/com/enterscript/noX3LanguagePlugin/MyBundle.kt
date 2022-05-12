@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template
+package com.enterscript.noX3LanguagePlugin
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls
