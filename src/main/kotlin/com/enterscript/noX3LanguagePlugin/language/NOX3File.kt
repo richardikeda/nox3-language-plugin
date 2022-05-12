@@ -11,6 +11,6 @@ class NOX3File (viewProvider: FileViewProvider?) : PsiFileBase(viewProvider!!, N
     }
 
     override fun toString(): String {
-        return "NOX3 File"
+        return "X3 File"
     }
 }

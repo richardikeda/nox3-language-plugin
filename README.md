@@ -14,11 +14,24 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+This is a new plugin for the IntelliJ Platform to allow working with X3-Language (L4J) for ERP Sage X3.
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+#### This is not an official plugin, it is an independent development based on the X3 plugin for Sage ERP.
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+Everyone can contribute.
+
+In the future we will implement:
+
+- A way to generate "com.example.x3.language" packages
+- Function and call verification
+- An unofficial way of working with code versions of .src on X3.
+- Dark theme
+- AutoComplete of classes, functions, subprogs, and references.
+
+When there is a stable version, the plugin will be published.
+
+Thanks for your contributions!
+
 <!-- Plugin description end -->
 
 ## Installation
@@ -35,6 +48,7 @@ To keep everything working, do not remove `<!-- ... -->` sections.
 
 
 ---
+
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template

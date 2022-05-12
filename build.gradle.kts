@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = project.findProperty(key).toString()
 
+sourceSets["main"].java.srcDirs("src/main/gen")
+
 plugins {
     // Java support
     id("java")
@@ -35,6 +37,7 @@ intellij {
     pluginName.set(properties("pluginName"))
     version.set(properties("platformVersion"))
     type.set(properties("platformType"))
+    downloadSources.set(properties("platformDownloadSources").toBoolean())
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
     plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
@@ -82,9 +85,17 @@ tasks {
         }
     }
 
+    // workaround for https://youtrack.jetbrains.com/issue/IDEA-210683
     withType<JavaExec>{
         jvmArgs(
             "--add-exports=java.base/jdk.internal.vm=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt=ALL-UNNAMED",
+            "--add-opens=java.base/java.lang=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.awt=ALL-UNNAMED",
+            "--add-opens=java.desktop/javax.swing=ALL-UNNAMED",
+            "--add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.font=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.swing=ALL-UNNAMED",
             "--illegal-access=permit"
         )
     }

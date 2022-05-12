@@ -24,8 +24,11 @@
                   fieldName="INSTANCE"
                   language="X3"
                   extensions="src"/>
-        <applicationService serviceImplementation="com.enterscript.noX3LanguagePlugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.enterscript.noX3LanguagePlugin.services.MyProjectService"/>
+        <lang.parserDefinition
+                language="X3"
+                implementationClass="com.enterscript.noX3LanguagePlugin.language.parser.NOX3ParserDefinition"/>
+<!--        <applicationService serviceImplementation="com.enterscript.noX3LanguagePlugin.services.MyApplicationService"/>-->
+<!--        <projectService serviceImplementation="com.enterscript.noX3LanguagePlugin.services.MyProjectService"/>-->
     </extensions>
 
 <!--    <applicationListeners>-->
