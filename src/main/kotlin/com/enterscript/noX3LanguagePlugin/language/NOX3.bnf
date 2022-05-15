@@ -1,9 +1,9 @@
 {
-  parserClass="com.enterscript.noX3LanguagePlugin.language.parser.NOX3Parser"
+  parserClass="com.enterscript.noX3LanguagePlugin.language.psi.impl.parser.NOX3Parser"
 
   extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
-  psiClassPrefix="Bnf"
+  psiClassPrefix="NOX3"
   psiImplClassSuffix="Impl"
 
   psiPackage="com.enterscript.noX3LanguagePlugin.language.psi"
@@ -15,32 +15,32 @@
   tokenTypeClass="com.enterscript.noX3LanguagePlugin.language.psi.NOX3TokenType"
 
 
-  tokens = [
-      OP_EQ="="
-      OP_IS="::="
-      OP_OR="|"
-      OP_OPT="?"
-      OP_ONEMORE="+"
-      OP_ZEROMORE="*"
-      OP_AND="&"
-      OP_NOT="!"
-      SEMICOLON=";"
-      LEFT_BRACE="{"
-      RIGHT_BRACE="}"
-      LEFT_BRACKET="["
-      RIGHT_BRACKET="]"
-      LEFT_PAREN="("
-      RIGHT_PAREN=")"
-      EXTERNAL_START="<<"
-      EXTERNAL_END=">>"
-
-      space='regexp:\s+'
-      id="regexp:\w+"
-      string="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\\"|\\\'|\\)*\")"
-      number="regexp:\d+"
-      line_comment="regexp://.*"
-      block_comment="regexp:/\*(.|\n)*\*/"
-    ]
+//  tokens = [
+//      OP_EQ="="
+//      OP_IS="::="
+//      OP_OR="|"
+//      OP_OPT="?"
+//      OP_ONEMORE="+"
+//      OP_ZEROMORE="*"
+//      OP_AND="&"
+//      OP_NOT="!"
+//      SEMICOLON=";"
+//      LEFT_BRACE="{"
+//      RIGHT_BRACE="}"
+//      LEFT_BRACKET="["
+//      RIGHT_BRACKET="]"
+//      LEFT_PAREN="("
+//      RIGHT_PAREN=")"
+//      EXTERNAL_START="<<"
+//      EXTERNAL_END=">>"
+//
+//      space='regexp:\s+'
+//      id="regexp:\w+"
+//      string="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\\"|\\\'|\\)*\")"
+//      number="regexp:\d+"
+//      line_comment="regexp://.*"
+//      block_comment="regexp:/\*(.|\n)*\*/"
+//    ]
 
 }
 

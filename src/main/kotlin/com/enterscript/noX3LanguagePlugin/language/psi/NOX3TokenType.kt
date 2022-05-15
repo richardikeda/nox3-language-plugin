@@ -5,7 +5,7 @@ import com.intellij.psi.tree.IElementType
 
 
 class NOX3TokenType(debugName: String) :
-    IElementType(debugName, NOX3Language) {
+    IElementType(debugName, NOX3Language.INSTANCE) {
 
     override fun toString(): String {
         return "NOX3TokenType." + super.toString()

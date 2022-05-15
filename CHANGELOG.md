@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 ### Changed
+- Initial Parser language 
+- Initial Lexer Adapter 
+- Initial Syntax High Lither
+### Fixed
+- Build properties 
+- Language definitions
+### Changed
 - Upgrade Gradle version
 - Upgrade Kotlin version
 - Upgrade Java version

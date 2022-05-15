@@ -1,3 +1,7 @@
 .gradle
 .idea
 build
+/src/code_samples/NOX3_language_plugin/idea-flex.skeleton
+/src/code_samples/NOX3_language_plugin/jflex-1.7.0-2.jar
+/src/test/kotlin/com/enterscript/noX3LanguagePlugin/MyPluginTest.kt
+/src/main/gen/com/enterscript/noX3LanguagePlugin/language/NOX3Lexer.java

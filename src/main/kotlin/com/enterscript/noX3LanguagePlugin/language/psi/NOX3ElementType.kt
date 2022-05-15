@@ -5,13 +5,8 @@ import com.intellij.psi.tree.IElementType
 
 
 class NOX3ElementType(debugName: String) :
-    IElementType    (debugName, NOX3Language) {
-    override fun toString(): String {
-        return "NOX3ElementType." + super.toString()
-    }
+    IElementType    (debugName, NOX3Language.INSTANCE) {
+    override fun toString(): String =  "NOX3ElementType." + super.toString()
+
 
 }
-
-
-//refer class SimpleElementType(debugName: String) : IElementType(debugName, SimpleLanguage.INSTANCE)
-

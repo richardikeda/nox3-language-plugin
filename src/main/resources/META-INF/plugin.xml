@@ -11,11 +11,11 @@
 
     <actions>
         <!-- Add your actions here -->
-        <group id="NOX3Plugin.MenuAction" text="NO X3 Lang" description="Non official X3 Language">
-            <add-to-group group-id="MainMenu" anchor="last" />
-            <action class="com.enterscript.noX3LanguagePlugin.MenuAction"
-                    id="actions.noX3LanguagePlugin.MenuAction" text="NOX3 Menu Action" />
-        </group>
+<!--        <group id="NOX3Plugin.MenuAction" text="NO X3 Lang" description="Non official X3 Language">-->
+<!--            <add-to-group group-id="MainMenu" anchor="last" />-->
+<!--            <action class="com.enterscript.noX3LanguagePlugin.MenuAction"-->
+<!--                    id="actions.noX3LanguagePlugin.MenuAction" text="NOX3 Menu Action" />-->
+<!--        </group>-->
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
@@ -27,12 +27,13 @@
         <lang.parserDefinition
                 language="X3"
                 implementationClass="com.enterscript.noX3LanguagePlugin.language.parser.NOX3ParserDefinition"/>
-<!--        <applicationService serviceImplementation="com.enterscript.noX3LanguagePlugin.services.MyApplicationService"/>-->
-<!--        <projectService serviceImplementation="com.enterscript.noX3LanguagePlugin.services.MyProjectService"/>-->
+<!--        <lang.syntaxHighlighterFactory-->
+<!--                language="X3"-->
+<!--                implementationClass="com.enterscript.noX3LanguagePlugin.language.syntax.NOX3SyntaxHighlighterFactory"/>-->
     </extensions>
 
-<!--    <applicationListeners>-->
+    <applicationListeners>
 <!--        <listener class="com.enterscript.noX3LanguagePlugin.listeners.MyProjectManagerListener"-->
 <!--                  topic="com.intellij.openapi.project.ProjectManagerListener"/>-->
-<!--    </applicationListeners>-->
+    </applicationListeners>
 </idea-plugin>

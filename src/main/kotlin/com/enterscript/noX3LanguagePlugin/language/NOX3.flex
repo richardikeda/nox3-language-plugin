@@ -1,4 +1,4 @@
-package com.enterscript.noX3LanguagePlugin.language;
+package com.enterscript.noX3LanguagePlugin.language.lexer;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
