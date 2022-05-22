@@ -11,6 +11,8 @@ public interface NOX3Types {
   IElementType PROPERTY = new NOX3ElementType("PROPERTY");
 
   IElementType COMMENT = new NOX3TokenType("COMMENT");
+  IElementType COMMENT_MULTI_LINE = new NOX3TokenType("COMMENT_MULTI_LINE");
+  IElementType COMMENT_MULTI_LINE_SPECIAL = new NOX3TokenType("COMMENT_MULTI_LINE_SPECIAL");
   IElementType CRLF = new NOX3TokenType("CRLF");
   IElementType KEY = new NOX3TokenType("KEY");
   IElementType SEPARATOR = new NOX3TokenType("SEPARATOR");

@@ -16,6 +16,6 @@ class NOX3File(viewProvider: FileViewProvider) :
     }
 
     override fun toString(): String {
-        return "X3 Language"
+        return "X3 File"
     }
 }

@@ -54,8 +54,8 @@ class NOX3Lexer implements FlexLexer {
 
   /* The ZZ_CMAP_A table has 320 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\4\1\2\1\1\1\5\1\3\22\0\1\7\1\10\1\0\1\10\26\0\1\11\2\0\1\11\36\0\1"+
-    "\6\50\0\1\1\242\0\2\1\26\0");
+    "\11\0\1\4\1\2\1\1\1\5\1\3\22\0\1\7\1\13\1\0\1\11\6\0\1\12\17\0\1\10\2\0\1"+
+    "\10\36\0\1\6\50\0\1\1\242\0\2\1\26\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -64,10 +64,14 @@ class NOX3Lexer implements FlexLexer {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\2\0\2\1\1\2\1\3\1\4\1\5\2\6\2\7"+
-    "\1\3\1\7\1\0\2\4\1\0\1\2\2\6";
+    "\1\3\1\7\1\0\1\5\1\10\1\5\1\10\2\5"+
+    "\1\0\1\2\2\6\1\10\1\5\1\10\1\11\1\1"+
+    "\1\5\1\10\2\5\2\10\2\0\1\11\1\0\1\1"+
+    "\1\5\1\10\1\5\1\10\1\0\1\1\1\5\1\10"+
+    "\1\5\1\10\1\0\1\1\1\5\1\10\2\11";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[21];
+    int [] result = new int[57];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -92,12 +96,17 @@ class NOX3Lexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\12\0\24\0\36\0\50\0\62\0\74\0\106"+
-    "\0\120\0\132\0\50\0\144\0\156\0\170\0\62\0\202"+
-    "\0\214\0\156\0\132\0\226\0\240";
+    "\0\0\0\14\0\30\0\44\0\60\0\74\0\110\0\124"+
+    "\0\140\0\154\0\60\0\170\0\204\0\220\0\74\0\234"+
+    "\0\250\0\264\0\300\0\314\0\330\0\204\0\154\0\344"+
+    "\0\360\0\374\0\u0108\0\u0114\0\u0120\0\u012c\0\u0138\0\u0144"+
+    "\0\u0150\0\u015c\0\u0168\0\u0174\0\u0180\0\u018c\0\u0180\0\u0198"+
+    "\0\u01a4\0\u01b0\0\u01bc\0\u01c8\0\u01d4\0\u01e0\0\u01ec\0\u01f8"+
+    "\0\u0204\0\u0210\0\u021c\0\u0228\0\u0234\0\u0240\0\u024c\0\u0258"+
+    "\0\110";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[21];
+    int [] result = new int[57];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -121,21 +130,54 @@ class NOX3Lexer implements FlexLexer {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\3\1\4\1\5\1\4\2\5\1\6\1\5\1\7"+
-    "\1\10\1\11\1\12\1\13\1\12\1\14\1\13\1\15"+
-    "\1\16\2\11\2\3\1\0\1\3\2\0\1\17\1\0"+
-    "\1\3\1\0\1\3\1\4\1\5\1\4\2\5\1\17"+
-    "\1\5\1\3\2\0\5\5\1\0\1\5\11\0\1\3"+
-    "\2\0\2\7\1\0\1\3\2\20\1\21\1\20\1\7"+
-    "\1\20\12\0\2\11\1\0\2\11\1\0\1\22\4\11"+
-    "\1\23\1\5\2\23\1\5\1\22\1\23\3\11\1\24"+
-    "\1\16\1\24\1\14\1\16\1\22\1\14\5\11\1\25"+
-    "\6\11\1\0\1\5\1\16\1\5\2\16\1\0\1\16"+
-    "\2\0\2\20\2\0\10\20\2\0\3\20\1\7\2\20"+
-    "\1\11\1\24\1\5\2\24\1\5\1\22\1\24\7\11"+
-    "\1\0\1\22\3\11";
+    "\1\10\2\3\1\11\1\12\1\13\1\12\1\14\1\13"+
+    "\1\15\1\16\4\11\2\3\1\0\1\3\2\0\1\17"+
+    "\2\0\4\3\1\4\1\5\1\4\2\5\1\17\1\5"+
+    "\1\0\3\3\1\0\5\5\1\0\1\5\13\0\1\3"+
+    "\20\0\1\20\1\21\1\0\1\3\1\22\1\23\1\24"+
+    "\2\22\1\20\1\25\1\20\2\11\1\0\2\11\1\0"+
+    "\1\26\6\11\1\27\1\5\2\27\1\5\1\26\1\27"+
+    "\5\11\1\30\1\16\1\30\1\14\1\16\1\26\1\14"+
+    "\7\11\1\31\10\11\1\0\1\5\1\16\1\5\2\16"+
+    "\1\0\1\16\4\0\1\20\1\21\1\0\1\3\1\22"+
+    "\1\23\1\24\2\22\3\20\2\21\1\0\1\3\2\23"+
+    "\1\32\2\23\3\21\1\22\1\23\2\0\1\22\1\23"+
+    "\6\22\2\23\2\0\10\23\1\22\1\23\2\0\1\22"+
+    "\1\23\1\22\1\20\4\22\1\20\1\21\1\0\1\3"+
+    "\1\22\1\23\1\24\2\22\1\20\1\33\1\20\1\11"+
+    "\1\30\1\5\2\30\1\5\1\26\1\30\11\11\1\0"+
+    "\1\26\5\11\2\23\2\0\3\23\1\21\4\23\1\33"+
+    "\1\34\1\35\1\36\1\37\1\40\1\41\2\37\1\42"+
+    "\2\33\2\34\1\35\1\36\2\40\1\43\2\40\1\44"+
+    "\2\34\2\45\1\35\6\45\1\46\1\45\1\47\2\36"+
+    "\1\35\1\36\2\45\1\50\2\45\1\51\2\36\1\37"+
+    "\1\40\1\35\1\45\1\37\1\40\3\37\1\52\2\37"+
+    "\2\40\1\35\1\45\5\40\1\53\2\40\1\37\1\40"+
+    "\1\35\1\45\1\37\1\40\1\37\1\33\1\37\1\52"+
+    "\2\37\1\33\1\34\1\35\1\36\1\37\1\40\1\41"+
+    "\2\37\1\42\1\54\1\33\2\40\1\35\1\45\3\40"+
+    "\1\34\1\40\1\53\2\40\2\34\1\35\1\36\2\40"+
+    "\1\43\2\40\1\44\1\55\1\34\2\45\1\35\6\45"+
+    "\1\46\4\45\1\35\6\45\1\46\1\56\3\45\1\35"+
+    "\4\45\1\36\1\45\1\46\2\45\2\36\1\35\1\36"+
+    "\2\45\1\50\2\45\1\51\1\57\1\36\1\37\1\40"+
+    "\1\35\1\45\1\37\1\40\3\37\1\52\1\60\1\37"+
+    "\2\40\1\35\1\45\5\40\1\53\1\61\1\40\1\33"+
+    "\1\34\1\35\1\36\1\37\1\40\1\41\2\37\1\42"+
+    "\1\33\1\62\2\34\1\35\1\36\2\40\1\43\2\40"+
+    "\1\44\1\34\1\63\2\45\1\35\6\45\1\46\1\45"+
+    "\1\64\2\36\1\35\1\36\2\45\1\50\2\45\1\51"+
+    "\1\36\1\65\1\37\1\40\1\35\1\45\1\37\1\40"+
+    "\3\37\1\52\1\37\1\66\2\40\1\35\1\45\5\40"+
+    "\1\53\1\40\1\67\1\20\1\21\1\70\1\36\1\22"+
+    "\1\23\1\24\2\22\3\20\2\21\1\70\1\36\2\23"+
+    "\1\32\2\23\3\21\2\0\1\70\1\45\10\0\2\3"+
+    "\1\70\1\36\2\0\1\17\2\0\3\3\1\22\1\23"+
+    "\1\70\1\45\1\22\1\23\6\22\2\23\1\70\1\45"+
+    "\10\23\13\0\1\71";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[170];
+    int [] result = new int[612];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -173,10 +215,12 @@ class NOX3Lexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\2\0\5\1\1\11\6\1\1\0\2\1\1\0\3\1";
+    "\2\0\4\1\1\11\7\1\1\0\6\1\1\0\16\1"+
+    "\2\0\1\1\1\0\5\1\1\0\5\1\1\0\4\1"+
+    "\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[21];
+    int [] result = new int[57];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -493,37 +537,47 @@ class NOX3Lexer implements FlexLexer {
             { yybegin(YYINITIAL); return NOX3Types.KEY;
             } 
             // fall through
-          case 8: break;
+          case 10: break;
           case 2: 
             { yybegin(YYINITIAL); return TokenType.WHITE_SPACE;
             } 
             // fall through
-          case 9: break;
+          case 11: break;
           case 3: 
             { return TokenType.BAD_CHARACTER;
             } 
             // fall through
-          case 10: break;
+          case 12: break;
           case 4: 
-            { yybegin(YYINITIAL); return NOX3Types.COMMENT;
-            } 
-            // fall through
-          case 11: break;
-          case 5: 
             { yybegin(WAITING_VALUE); return NOX3Types.SEPARATOR;
             } 
             // fall through
-          case 12: break;
+          case 13: break;
+          case 5: 
+            { return NOX3Types.COMMENT;
+            } 
+            // fall through
+          case 14: break;
           case 6: 
             { yybegin(YYINITIAL); return NOX3Types.VALUE;
             } 
             // fall through
-          case 13: break;
+          case 15: break;
           case 7: 
             { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE;
             } 
             // fall through
-          case 14: break;
+          case 16: break;
+          case 8: 
+            { yybegin(YYINITIAL); return NOX3Types.COMMENT;
+            } 
+            // fall through
+          case 17: break;
+          case 9: 
+            { return NOX3Types.COMMENT_MULTI_LINE;
+            } 
+            // fall through
+          case 18: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

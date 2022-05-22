@@ -15,29 +15,29 @@ import org.jetbrains.annotations.NotNull;
 
 class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
     internal companion object {
-//        private val SEPARATOR  = TextAttributesKey.createTextAttributesKey("SIMPLE_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+        internal val SEPARATOR  = TextAttributesKey.createTextAttributesKey("NOX3_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
 //
-//        private val KEY=TextAttributesKey.createTextAttributesKey("SIMPLE_KEY", DefaultLanguageHighlighterColors.KEYWORD)
-//        private val VALUE=TextAttributesKey.createTextAttributesKey("SIMPLE_VALUE", DefaultLanguageHighlighterColors.STRING)
-//        private val COMMENT= TextAttributesKey.createTextAttributesKey("SIMPLE_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
-        private  val BAD_CHARACTER = TextAttributesKey.createTextAttributesKey("SIMPLE_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
+internal val KEY=TextAttributesKey.createTextAttributesKey("NOX3_KEY", DefaultLanguageHighlighterColors.KEYWORD)
+        internal val VALUE=TextAttributesKey.createTextAttributesKey("VALUE", DefaultLanguageHighlighterColors.STRING)
+        private val COMMENT= TextAttributesKey.createTextAttributesKey("COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
+        internal val BAD_CHARACTER = TextAttributesKey.createTextAttributesKey("NOX3_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
 //        val BAD_CHAR_KEYS = arrayOf(BAD_CHARACTER)
 
-//        private val SEPARATOR_KEYS = arrayOf(SEPARATOR)
-//        private val KEY_KEYS = arrayOf(KEY)
-//        private val VALUE_KEYS = arrayOf(VALUE)
-//        private val COMMENT_KEYS = arrayOf(COMMENT)
+        private val SEPARATOR_KEYS = arrayOf(SEPARATOR)
+        private val KEY_KEYS = arrayOf(KEY)
+        private val VALUE_KEYS = arrayOf(VALUE)
+        private val COMMENT_KEYS = arrayOf(COMMENT)
 //        private val EMPTY_KEYS = arrayOfNulls<TextAttributesKey>(0)
 
 
         private val keys = HashMap<IElementType, TextAttributesKey>()
 
         init {
-            keys.put(TokenType.BAD_CHARACTER, HighlighterColors.BAD_CHARACTER)
-//            keys.put( NOX3Types.COMMENT, COMMENT)
-//            keys.put( NOX3Types.VALUE, VALUE)
-//            keys.put( NOX3Types.KEY, KEY)
-//            keys.put( NOX3Types.SEPARATOR, SEPARATOR)
+            keys[TokenType.BAD_CHARACTER] = HighlighterColors.BAD_CHARACTER
+            keys[NOX3Types.COMMENT] = COMMENT
+            keys[NOX3Types.VALUE] = VALUE
+            keys[NOX3Types.KEY] = KEY
+            keys[NOX3Types.SEPARATOR] = SEPARATOR
 
 //            fillMap(COMMENT_KEYS, NOX3Types.COMMENT, COMMENT)
 
@@ -72,7 +72,7 @@ class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
     }
 
     @NotNull
-    override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> = pack(keys.get(tokenType))
+    override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> = pack(keys[tokenType])
 
     @NotNull
     override fun getHighlightingLexer(): Lexer = NOX3LexerAdapter()

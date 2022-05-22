@@ -27,9 +27,11 @@
         <lang.parserDefinition
                 language="X3"
                 implementationClass="com.enterscript.noX3LanguagePlugin.language.parser.NOX3ParserDefinition"/>
-<!--        <lang.syntaxHighlighterFactory-->
-<!--                language="X3"-->
-<!--                implementationClass="com.enterscript.noX3LanguagePlugin.language.syntax.NOX3SyntaxHighlighterFactory"/>-->
+        <lang.syntaxHighlighterFactory
+                language="X3"
+                implementationClass="com.enterscript.noX3LanguagePlugin.language.syntax.NOX3SyntaxHighlighterFactory"/>
+            <colorSettingsPage
+                    implementation="com.enterscript.noX3LanguagePlugin.language.NOX3ColorSettingsPage"/>
     </extensions>
 
     <applicationListeners>

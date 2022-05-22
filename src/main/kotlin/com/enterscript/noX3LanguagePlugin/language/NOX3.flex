@@ -19,15 +19,31 @@ CRLF=\R
 WHITE_SPACE=[\ \n\t\f]
 FIRST_VALUE_CHARACTER=[^ \n\f\\] | "\\"{CRLF} | "\\".
 VALUE_CHARACTER=[^\n\f\\] | "\\"{CRLF} | "\\".
-END_OF_LINE_COMMENT=("#"|"!")[^\r\n]*
 SEPARATOR=[:=]
 KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
+
+//Definition of numbers
+INT=-?[0-9]+
+
+//Comments block code
+COMMENT_LINE=#.*
+COMMENT_MULTI_LINE="#**" !([^]* "#*!"[^\r][^]*)\n ("!")?
+//END_OF_MULTI_LINE_COMMENT=[^\r\n]*
+//COMMENT_MULTI_LINE_SPECIAL="#***" !([^]* "#*!" [^]*) ("#*!")?
+END_OF_LINE_COMMENT=("#")[^\r\n]*
 
 %state WAITING_VALUE
 
 %%
+<YYINITIAL> {
+//    {COMMENT_MULTI_LINE_SPECIAL}  { return NOX3Types.COMMENT_MULTI_LINE_SPECIAL; }
+    {COMMENT_MULTI_LINE}          { return NOX3Types.COMMENT_MULTI_LINE; }
+    {COMMENT_LINE}                { return NOX3Types.COMMENT; }
 
+
+}
 <YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return NOX3Types.COMMENT; }
+//<YYINITIAL> {END_OF_MULTI_LINE_COMMENT}                     { yybegin(YYINITIAL); return NOX3Types.COMMENT_MULTI_LINE; }
 
 <YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return NOX3Types.KEY; }
 

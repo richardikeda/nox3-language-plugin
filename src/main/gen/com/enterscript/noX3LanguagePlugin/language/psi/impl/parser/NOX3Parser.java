@@ -36,12 +36,14 @@ public class NOX3Parser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // property|COMMENT|CRLF
+  // property|COMMENT|COMMENT_MULTI_LINE|COMMENT_MULTI_LINE_SPECIAL|CRLF
   static boolean item_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "item_")) return false;
     boolean r;
     r = property(b, l + 1);
     if (!r) r = consumeToken(b, COMMENT);
+    if (!r) r = consumeToken(b, COMMENT_MULTI_LINE);
+    if (!r) r = consumeToken(b, COMMENT_MULTI_LINE_SPECIAL);
     if (!r) r = consumeToken(b, CRLF);
     return r;
   }

@@ -20,7 +20,10 @@ import org.jetbrains.annotations.NotNull
 class NOX3ParserDefinition : ParserDefinition {
     companion object{
         val WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE)
-        val COMMENTS = TokenSet.create(NOX3Types.COMMENT)
+        val COMMENTS = TokenSet.create(
+            NOX3Types.COMMENT,
+            NOX3Types.COMMENT_MULTI_LINE,
+            NOX3Types.COMMENT_MULTI_LINE_SPECIAL)
         val FILE = IFileElementType(NOX3Language.INSTANCE)
 
     }
@@ -37,8 +40,7 @@ class NOX3ParserDefinition : ParserDefinition {
     override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY
 
     @NotNull
-    override fun createParser(project: Project): PsiParser =
-        NOX3Parser()
+    override fun createParser(project: Project): PsiParser = NOX3Parser()
 
     @NotNull
     override fun getFileNodeType(): IFileElementType  = FILE
