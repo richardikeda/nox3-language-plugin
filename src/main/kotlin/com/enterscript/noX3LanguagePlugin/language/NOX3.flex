@@ -27,7 +27,7 @@ INT=-?[0-9]+
 
 //Comments block code
 COMMENT_LINE=#.*
-COMMENT_MULTI_LINE="#**" !([^]* "#*!"[^\r][^]*)\n ("!")?
+COMMENT_MULTI_LINE="#**" !([^]* "#*!"{CRLF}[^]*)\n ("#*!")?
 //END_OF_MULTI_LINE_COMMENT=[^\r\n]*
 //COMMENT_MULTI_LINE_SPECIAL="#***" !([^]* "#*!" [^]*) ("#*!")?
 END_OF_LINE_COMMENT=("#")[^\r\n]*
@@ -42,8 +42,8 @@ END_OF_LINE_COMMENT=("#")[^\r\n]*
 
 
 }
-<YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return NOX3Types.COMMENT; }
-//<YYINITIAL> {END_OF_MULTI_LINE_COMMENT}                     { yybegin(YYINITIAL); return NOX3Types.COMMENT_MULTI_LINE; }
+<YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(WAITING_VALUE); return NOX3Types.COMMENT; }
+//<YYINITIAL> {END_OF_MULTI_LINE_COMMENT}                     { yybegin(WAITING_VALUE); return NOX3Types.COMMENT_MULTI_LINE; }
 
 <YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return NOX3Types.KEY; }
 

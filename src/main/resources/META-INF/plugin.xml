@@ -8,14 +8,15 @@
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
 
     <actions>
         <!-- Add your actions here -->
-<!--        <group id="NOX3Plugin.MenuAction" text="NO X3 Lang" description="Non official X3 Language">-->
-<!--            <add-to-group group-id="MainMenu" anchor="last" />-->
-<!--            <action class="com.enterscript.noX3LanguagePlugin.MenuAction"-->
-<!--                    id="actions.noX3LanguagePlugin.MenuAction" text="NOX3 Menu Action" />-->
-<!--        </group>-->
+        <group id="NOX3Plugin.MenuAction" text="NO X3 Lang" description="Non official X3 Language">
+            <add-to-group group-id="MainMenu" anchor="last" />
+            <action class="com.enterscript.noX3LanguagePlugin.MenuAction"
+                    id="actions.noX3LanguagePlugin.MenuAction" text="NOX3 Menu Action" />
+        </group>
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
@@ -30,8 +31,22 @@
         <lang.syntaxHighlighterFactory
                 language="X3"
                 implementationClass="com.enterscript.noX3LanguagePlugin.language.syntax.NOX3SyntaxHighlighterFactory"/>
-            <colorSettingsPage
-                    implementation="com.enterscript.noX3LanguagePlugin.language.NOX3ColorSettingsPage"/>
+        <colorSettingsPage
+                implementation="com.enterscript.noX3LanguagePlugin.language.NOX3ColorSettingsPage"/>
+        <annotator
+                language="X3"
+                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3Annotator"/>
+        <completion.contributor
+                language="X3"
+                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3CompletionContributor"/>
+        <psi.referenceContributor
+                implementation="com.enterscript.noX3LanguagePlugin.language.NOX3ReferenceContributor"/>
+        <lang.refactoringSupport
+                language="X3"
+                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3RefactoringSupportProvider"/>
+        <codeInsight.lineMarkerProvider
+                language="JAVA"
+                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3LineMarkerProvider"/>
     </extensions>
 
     <applicationListeners>

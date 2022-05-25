@@ -3,30 +3,32 @@ package com.enterscript.noX3LanguagePlugin.language.syntax
 import com.enterscript.noX3LanguagePlugin.language.lexer.NOX3LexerAdapter
 import com.enterscript.noX3LanguagePlugin.language.psi.NOX3Types
 import com.intellij.lexer.Lexer
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
-import com.intellij.openapi.editor.HighlighterColors;
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
+import com.intellij.openapi.editor.HighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey
-import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
-import com.intellij.psi.TokenType;
-import com.intellij.psi.tree.IElementType;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
+import com.intellij.psi.TokenType
+import com.intellij.psi.tree.IElementType
+import org.jetbrains.annotations.NotNull
 
 
 class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
     internal companion object {
-        internal val SEPARATOR  = TextAttributesKey.createTextAttributesKey("NOX3_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+        internal val SEPARATOR  = createTextAttributesKey("NOX3_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
 //
-internal val KEY=TextAttributesKey.createTextAttributesKey("NOX3_KEY", DefaultLanguageHighlighterColors.KEYWORD)
-        internal val VALUE=TextAttributesKey.createTextAttributesKey("VALUE", DefaultLanguageHighlighterColors.STRING)
-        private val COMMENT= TextAttributesKey.createTextAttributesKey("COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
-        internal val BAD_CHARACTER = TextAttributesKey.createTextAttributesKey("NOX3_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
+        internal val KEY= createTextAttributesKey("NOX3_KEY", DefaultLanguageHighlighterColors.KEYWORD)
+        internal val VALUE= createTextAttributesKey("VALUE", DefaultLanguageHighlighterColors.STRING)
+        private val COMMENT= createTextAttributesKey("COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
+        private val COMMENT_MULTI_LINE= createTextAttributesKey("COMMENT_MULTI_LINE", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
+        internal val BAD_CHARACTER = createTextAttributesKey("NOX3_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
 //        val BAD_CHAR_KEYS = arrayOf(BAD_CHARACTER)
 
         private val SEPARATOR_KEYS = arrayOf(SEPARATOR)
         private val KEY_KEYS = arrayOf(KEY)
         private val VALUE_KEYS = arrayOf(VALUE)
         private val COMMENT_KEYS = arrayOf(COMMENT)
+        private val COMMENT_MULTI_LINE_KEYS = arrayOf(COMMENT_MULTI_LINE)
 //        private val EMPTY_KEYS = arrayOfNulls<TextAttributesKey>(0)
 
 
@@ -35,6 +37,7 @@ internal val KEY=TextAttributesKey.createTextAttributesKey("NOX3_KEY", DefaultLa
         init {
             keys[TokenType.BAD_CHARACTER] = HighlighterColors.BAD_CHARACTER
             keys[NOX3Types.COMMENT] = COMMENT
+//            keys[NOX3Types.COMMENT_MULTI_LINE] = COMMENT_MULTI_LINE
             keys[NOX3Types.VALUE] = VALUE
             keys[NOX3Types.KEY] = KEY
             keys[NOX3Types.SEPARATOR] = SEPARATOR

@@ -11,7 +11,7 @@ plugins {
     // Kotlin support
     id("org.jetbrains.kotlin.jvm") version "1.6.10"
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "1.5.3"
+    id("org.jetbrains.intellij") version "1.6.0"
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
     id("org.jetbrains.changelog") version "1.3.1"
     // Gradle Qodana Plugin
@@ -41,6 +41,7 @@ intellij {
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
     plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
+    plugins.set(listOf("com.intellij.java"))
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
