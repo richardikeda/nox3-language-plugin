@@ -4,11 +4,11 @@
 
 ## [Unreleased]
 ### Changed
-- Initial Parser language 
-- Initial Lexer Adapter 
-- Initial Syntax High Lither
+- Initial Parser language
+- Initial Lexer Adapter
+- Initial Syntax Highlighter
 ### Fixed
-- Build properties 
+- Build properties
 - Language definitions
 ### Changed
 - Upgrade Gradle version
