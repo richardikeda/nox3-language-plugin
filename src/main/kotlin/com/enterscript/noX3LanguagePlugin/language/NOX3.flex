@@ -16,45 +16,32 @@ import com.intellij.psi.TokenType;
 %eof}
 
 CRLF=\R
-WHITE_SPACE=[\ \n\t\f]
-FIRST_VALUE_CHARACTER=[^ \n\f\\] | "\\"{CRLF} | "\\".
-VALUE_CHARACTER=[^\n\f\\] | "\\"{CRLF} | "\\".
-SEPARATOR=[:=]
-KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
-
-//Definition of numbers
-INT=-?[0-9]+
-
-//Comments block code
-COMMENT_LINE=#.*
-COMMENT_MULTI_LINE="#**" !([^]* "#*!"{CRLF}[^]*)\n ("#*!")?
-//END_OF_MULTI_LINE_COMMENT=[^\r\n]*
-//COMMENT_MULTI_LINE_SPECIAL="#***" !([^]* "#*!" [^]*) ("#*!")?
-END_OF_LINE_COMMENT=("#")[^\r\n]*
-
-%state WAITING_VALUE
+WHITE_SPACE=[\ \t\f]
+IDENTIFIER=[a-zA-Z_][a-zA-Z0-9_]*
+NUMBER=[0-9]+
+STRING="([^"\n]|\\.)*"
+COMMENT="#"[^\n]*
+IF=(?i:if)
+ENDIF=(?i:endif)
+FOR=(?i:for)
+TO=(?i:to)
+ENDFOR=(?i:endfor)
 
 %%
-<YYINITIAL> {
-//    {COMMENT_MULTI_LINE_SPECIAL}  { return NOX3Types.COMMENT_MULTI_LINE_SPECIAL; }
-    {COMMENT_MULTI_LINE}          { return NOX3Types.COMMENT_MULTI_LINE; }
-    {COMMENT_LINE}                { return NOX3Types.COMMENT; }
 
+{WHITE_SPACE}+ { return TokenType.WHITE_SPACE; }
+{CRLF}        { return NOX3Types.CRLF; }
+{COMMENT}     { return NOX3Types.COMMENT; }
 
-}
-<YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(WAITING_VALUE); return NOX3Types.COMMENT; }
-//<YYINITIAL> {END_OF_MULTI_LINE_COMMENT}                     { yybegin(WAITING_VALUE); return NOX3Types.COMMENT_MULTI_LINE; }
+{IF}          { return NOX3Types.IF; }
+{ENDIF}       { return NOX3Types.ENDIF; }
+{FOR}         { return NOX3Types.FOR; }
+{TO}          { return NOX3Types.TO; }
+{ENDFOR}      { return NOX3Types.ENDFOR; }
 
-<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return NOX3Types.KEY; }
+"="           { return NOX3Types.SEPARATOR; }
+{STRING}      { return NOX3Types.STRING; }
+{NUMBER}      { return NOX3Types.NUMBER; }
+{IDENTIFIER}  { return NOX3Types.IDENTIFIER; }
 
-<YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return NOX3Types.SEPARATOR; }
-
-<WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
-
-<WAITING_VALUE> {WHITE_SPACE}+                              { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE; }
-
-<WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return NOX3Types.VALUE; }
-
-({CRLF}|{WHITE_SPACE})+                                     { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
-
-[^]                                                         { return TokenType.BAD_CHARACTER; }
+[^]           { return TokenType.BAD_CHARACTER; }

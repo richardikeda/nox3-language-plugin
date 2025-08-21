@@ -54,6 +54,7 @@
                 groupName="NOX3"
                 enabledByDefault="true"
                 implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3FunctionCallInspection"/>
+
     </extensions>
 
     <applicationListeners>

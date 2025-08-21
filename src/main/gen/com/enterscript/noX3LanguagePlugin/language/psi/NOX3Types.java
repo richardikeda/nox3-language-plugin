@@ -11,12 +11,16 @@ public interface NOX3Types {
   IElementType PROPERTY = new NOX3ElementType("PROPERTY");
 
   IElementType COMMENT = new NOX3TokenType("COMMENT");
-  IElementType COMMENT_MULTI_LINE = new NOX3TokenType("COMMENT_MULTI_LINE");
-  IElementType COMMENT_MULTI_LINE_SPECIAL = new NOX3TokenType("COMMENT_MULTI_LINE_SPECIAL");
   IElementType CRLF = new NOX3TokenType("CRLF");
-  IElementType KEY = new NOX3TokenType("KEY");
+  IElementType IDENTIFIER = new NOX3TokenType("IDENTIFIER");
+  IElementType NUMBER = new NOX3TokenType("NUMBER");
+  IElementType STRING = new NOX3TokenType("STRING");
   IElementType SEPARATOR = new NOX3TokenType("SEPARATOR");
-  IElementType VALUE = new NOX3TokenType("VALUE");
+  IElementType IF = new NOX3TokenType("IF");
+  IElementType ENDIF = new NOX3TokenType("ENDIF");
+  IElementType FOR = new NOX3TokenType("FOR");
+  IElementType TO = new NOX3TokenType("TO");
+  IElementType ENDFOR = new NOX3TokenType("ENDFOR");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
