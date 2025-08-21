@@ -13,8 +13,7 @@ class NOX3ElementFactory {
         private fun createFile(project: Project?, text: String?): NOX3File {
             val content = text ?: throw IllegalArgumentException("text cannot be null")
             val name = "SPEDUMMY.src"
-            return PsiFileFactory.getInstance(project)
-                .createFileFromText(name, NOX3FileType.INSTANCE, content) as NOX3File
+            return PsiFileFactory.getInstance(project).createFileFromText(name, NOX3FileType.INSTANCE, content) as NOX3File
         }
 
         fun createProperty(project: Project?, name: String?): NOX3Property {
