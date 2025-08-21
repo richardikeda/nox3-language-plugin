@@ -1,6 +1,8 @@
 // build.gradle.kts ATUALIZADO
 import org.jetbrains.changelog.markdownToHTML
 
+fun properties(key: String) = project.findProperty(key).toString()
+
 // As versões dos plugins foram atualizadas para as mais recentes e estáveis.
 plugins {
     id("java")
@@ -9,8 +11,8 @@ plugins {
     id("org.jetbrains.changelog") version "2.2.0"
 }
 
-group = "com.enterscript"
-version = "1.0-SNAPSHOT"
+group = properties("pluginGroup")
+version = properties("pluginVersion")
 
 repositories {
     mavenCentral()
@@ -29,12 +31,12 @@ kotlin {
 // Configure IntelliJ Platform plugin
 // A versão do IntelliJ foi atualizada.
 intellij {
-    pluginName.set("nox3-language-plugin")
+    pluginName.set(properties("pluginName"))
     version.set("2023.3.6") // Versão estável e recente do IntelliJ
     type.set("IC") // IC para Community Edition
 
     // Dependências de plugins (se houver)
-    plugins.set(listOf(/* Adicione aqui se o seu plugin depender de outros, ex: "com.intellij.java" */))
+    plugins.set(listOf("com.intellij.java"))
 }
 
 // Configure Changelog plugin
