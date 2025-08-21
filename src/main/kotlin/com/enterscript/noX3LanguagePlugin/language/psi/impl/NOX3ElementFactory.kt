@@ -18,7 +18,7 @@ class NOX3ElementFactory {
 
         fun createProperty(project: Project?, name: String?): NOX3Property {
             val propertyName = name ?: throw IllegalArgumentException("name cannot be null")
-            val file: NOX3File = createFile(project, propertyName)
+            val file: NOX3File = createFile(project, "$propertyName=0")
             return file.firstChild as NOX3Property
         }
 

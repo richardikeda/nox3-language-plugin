@@ -11,12 +11,12 @@
     <depends>com.intellij.java</depends>
 
     <actions>
-        <!-- Add your actions here -->
-        <group id="NOX3Plugin.MenuAction" text="NO X3 Lang" description="Non official X3 Language">
-            <add-to-group group-id="MainMenu" anchor="last" />
-            <action class="com.enterscript.noX3LanguagePlugin.MenuAction"
-                    id="actions.noX3LanguagePlugin.MenuAction" text="NOX3 Menu Action" />
-        </group>
+        <!-- Register action in the New menu -->
+        <action id="com.enterscript.noX3LanguagePlugin.MenuAction"
+                class="com.enterscript.noX3LanguagePlugin.MenuAction"
+                text="Create X3 Package">
+            <add-to-group group-id="NewGroup" anchor="last" />
+        </action>
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
@@ -48,6 +48,14 @@
                 language="JAVA"
                 implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3LineMarkerProvider"/>
         <editorColorsScheme name="Nox3 Dark" path="/META-INF/Nox3Dark.icls"/>
+        <localInspection
+                language="JAVA"
+                shortName="NOX3FunctionCall"
+                displayName="NOX3 function call validator"
+                groupName="NOX3"
+                enabledByDefault="true"
+                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3FunctionCallInspection"/>
+
     </extensions>
 
     <applicationListeners>

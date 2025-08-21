@@ -13,18 +13,22 @@
   tokenTypeClass="com.enterscript.noX3LanguagePlugin.language.psi.NOX3TokenType"
 
   psiImplUtilClass="com.enterscript.noX3LanguagePlugin.language.psi.impl.NOX3PsiImplUtil"
-
-
-
 }
 
-simpleFile ::= item_*
+file ::= element_*
 
-private item_ ::= (property|COMMENT|COMMENT_MULTI_LINE|COMMENT_MULTI_LINE_SPECIAL|CRLF)
+private element_ ::= (property | if_statement | for_statement | COMMENT | CRLF)
 
-//property ::= (KEY? SEPARATOR VALUE?) | KEY
-property ::= (KEY? SEPARATOR VALUE?) | KEY {
-                                            mixin="com.enterscript.noX3LanguagePlugin.language.psi.impl.NOX3NamedElementImpl"
-                                            implements="com.enterscript.noX3LanguagePlugin.language.psi.NOX3NamedElement"
-                                            methods=[getKey getValue getName setName getNameIdentifier]
-                                        }
+property ::= IDENTIFIER SEPARATOR value {
+    mixin="com.enterscript.noX3LanguagePlugin.language.psi.impl.NOX3NamedElementImpl"
+    implements="com.enterscript.noX3LanguagePlugin.language.psi.NOX3NamedElement"
+    methods=[getKey getValue getName setName getNameIdentifier]
+}
+
+if_statement ::= IF expression CRLF element_* ENDIF
+
+for_statement ::= FOR IDENTIFIER SEPARATOR expression TO expression CRLF element_* ENDFOR
+
+value ::= expression
+
+expression ::= NUMBER | STRING | IDENTIFIER
