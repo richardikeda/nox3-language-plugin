@@ -25,7 +25,7 @@ class NOX3LineMarkerProvider : RelatedItemLineMarkerProvider() {
             return
         }
 
-        // The literal expression must start with the Simple language literal expression
+        // The literal expression must start with the NOX3 language literal expression
         val literalExpression: PsiLiteralExpression = element.getParent() as PsiLiteralExpression
         val value = if (literalExpression.value is String) literalExpression.value else null
         if (value == null ||
@@ -34,7 +34,7 @@ class NOX3LineMarkerProvider : RelatedItemLineMarkerProvider() {
             return
         }
 
-        // Get the Simple language property usage
+        // Get the NOX3 language property usage
         val project: Project = element.getProject()
         val possibleProperties: String = value.toString().substring(
             NOX3Annotator.NOX3_PREFIX_STR.length + NOX3Annotator.NOX3_SEPARATOR_STR.length
