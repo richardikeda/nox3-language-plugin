@@ -2,21 +2,24 @@ package com.enterscript.noX3LanguagePlugin.language.psi.impl
 
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 
 class NOX3ElementFactoryTest : BasePlatformTestCase() {
-
-    fun testCreatePropertyValid() {
-        val property = NOX3ElementFactory.createProperty(project, "foo")
-        assertNotNull(property)
-        assertEquals("foo", property.key)
+    fun testCreateModule() {
+        val module = NOX3ElementFactory.createModule(project, "Demo")
+        assertNotNull(module)
+        assertEquals("Demo", module.name)
     }
 
-    fun testCreatePropertyNullNameThrows() {
-        assertFailsWith<IllegalArgumentException> {
-            NOX3ElementFactory.createProperty(project, null)
-        }
+    fun testCreateFunction() {
+        val function = NOX3ElementFactory.createFunction(project, "foo")
+        assertNotNull(function)
+        assertEquals("foo", function.name)
+    }
+
+    fun testCreateVariable() {
+        val variable = NOX3ElementFactory.createVariable(project, "bar")
+        assertNotNull(variable)
+        assertEquals("bar", variable.name)
     }
 }
-
