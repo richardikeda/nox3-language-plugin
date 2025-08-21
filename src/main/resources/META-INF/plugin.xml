@@ -47,6 +47,9 @@
         <codeInsight.lineMarkerProvider
                 language="JAVA"
                 implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3LineMarkerProvider"/>
+        <lang.psiStructureViewFactory
+                language="X3"
+                implementationClass="com.enterscript.noX3LanguagePlugin.language.structure.NOX3StructureViewFactory"/>
     </extensions>
 
     <applicationListeners>
