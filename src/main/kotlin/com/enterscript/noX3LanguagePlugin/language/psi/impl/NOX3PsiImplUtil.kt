@@ -31,7 +31,8 @@ class NOX3PsiImplUtil{
         fun setName(element: NOX3Property, newName: String?): PsiElement? {
             val keyNode: ASTNode? = element.node.findChildByType(NOX3Types.KEY)
             if (keyNode != null) {
-                val property: NOX3Property = NOX3ElementFactory.createProperty(element.project, newName)
+                val name = newName ?: throw IllegalArgumentException("name cannot be null")
+                val property: NOX3Property = NOX3ElementFactory.createProperty(element.project, name)
                 val newKeyNode: ASTNode = property.firstChild.node
                 element.node.replaceChild(keyNode, newKeyNode)
             }
