@@ -1,5 +1,8 @@
 // build.gradle.kts ATUALIZADO
-import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.changelog.Changelog
+
+
+fun properties(key: String) = project.findProperty(key).toString()
 
 // As versões dos plugins foram atualizadas para as mais recentes e estáveis.
 plugins {
@@ -10,8 +13,8 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.23.5"
 }
 
-group = "com.enterscript"
-version = "1.0-SNAPSHOT"
+group = properties("pluginGroup")
+version = properties("pluginVersion")
 
 repositories {
     mavenCentral()
@@ -36,12 +39,12 @@ kotlin {
 // Configure IntelliJ Platform plugin
 // A versão do IntelliJ foi atualizada.
 intellij {
-    pluginName.set("nox3-language-plugin")
-    version.set("2023.3.6") // Versão estável e recente do IntelliJ
+    pluginName.set(properties("pluginName"))
+    version.set(properties("platformVersion"))
     type.set("IC") // IC para Community Edition
 
     // Dependências de plugins (se houver)
-    plugins.set(listOf(/* Adicione aqui se o seu plugin depender de outros, ex: "com.intellij.java" */))
+    plugins.set(listOf("com.intellij.java"))
 }
 
 // Configure Changelog plugin
@@ -51,9 +54,7 @@ changelog {
     // A configuração do changelog foi mantida como estava no seu projeto.
     header.set(project.version.toString())
     itemPrefix.set("*")
-    keepFutureVersions.set(true)
     lineSeparator.set("\n")
-    unstyledLinks.set(false)
     groups.set(emptyList())
     repositoryUrl.set("https://github.com/richardikeda/nox3-language-plugin")
 }
@@ -76,7 +77,7 @@ tasks {
         // As versões since/until agora são derivadas automaticamente da versão do IntelliJ
         // definida no bloco intellij {}. É mais seguro e menos propenso a erros.
         changeNotes.set(provider {
-            changelog.get().toHTML()
+            changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML)
         })
     }
 
