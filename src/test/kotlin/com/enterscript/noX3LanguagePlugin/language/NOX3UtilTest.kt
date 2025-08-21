@@ -18,14 +18,14 @@ class NOX3UtilTest : BasePlatformTestCase() {
     }
 
     fun testFindDocumentationCommentNoComment() {
-        val property = createProperty("foo=bar")
+        val property = createProperty("foo=42")
         val documentation = NOX3Util.findDocumentationComment(property)
         assertEquals("", documentation)
     }
 
     fun testFindDocumentationCommentMultipleComments() {
         val property = createProperty(
-            """# First comment\n# Second comment\nfoo=bar"""
+            """# First comment\n# Second comment\nfoo=42"""
         )
         val documentation = NOX3Util.findDocumentationComment(property)
         assertEquals("First comment\n Second comment", documentation)
@@ -33,7 +33,7 @@ class NOX3UtilTest : BasePlatformTestCase() {
 
     fun testFindDocumentationCommentWithBlankLines() {
         val property = createProperty(
-            """# First comment\n\nfoo=bar"""
+            """# First comment\n\nfoo=42"""
         )
         val documentation = NOX3Util.findDocumentationComment(property)
         assertEquals("First comment", documentation)
