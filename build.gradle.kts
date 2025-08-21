@@ -16,6 +16,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    testImplementation(kotlin("test"))
+}
+
 // Bloco Kotlin agora usa jvmToolchain para garantir que o JDK 17 seja usado.
 // Isso corrige o erro de compilação original.
 kotlin {
