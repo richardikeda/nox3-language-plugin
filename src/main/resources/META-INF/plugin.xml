@@ -47,6 +47,13 @@
         <codeInsight.lineMarkerProvider
                 language="JAVA"
                 implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3LineMarkerProvider"/>
+        <localInspection
+                language="JAVA"
+                shortName="NOX3FunctionCall"
+                displayName="NOX3 function call validator"
+                groupName="NOX3"
+                enabledByDefault="true"
+                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3FunctionCallInspection"/>
     </extensions>
 
     <applicationListeners>
