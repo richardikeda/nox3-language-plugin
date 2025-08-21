@@ -1,0 +1,12 @@
+<scheme name="Nox3 Dark" version="142" parent_scheme="Darcula">
+  <colors>
+    <option name="CARET_COLOR" value="ffcc00" />
+  </colors>
+  <attributes>
+    <option name="NOX3_KEY">
+      <value>
+        <option name="FOREGROUND" value="E3B341" />
+      </value>
+    </option>
+  </attributes>
+</scheme>

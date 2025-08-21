@@ -47,6 +47,7 @@
         <codeInsight.lineMarkerProvider
                 language="JAVA"
                 implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3LineMarkerProvider"/>
+        <editorColorsScheme name="Nox3 Dark" path="/META-INF/Nox3Dark.icls"/>
         <localInspection
                 language="JAVA"
                 shortName="NOX3FunctionCall"
