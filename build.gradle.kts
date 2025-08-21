@@ -7,6 +7,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.23"
     id("org.jetbrains.intellij") version "1.17.2"
     id("org.jetbrains.changelog") version "2.2.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.5"
 }
 
 group = "com.enterscript"
@@ -17,7 +18,13 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test-junit"))
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("com.fasterxml.jackson.core:jackson-core:2.15.3")
+    }
 }
 
 // Bloco Kotlin agora usa jvmToolchain para garantir que o JDK 17 seja usado.
@@ -51,6 +58,11 @@ changelog {
     repositoryUrl.set("https://github.com/richardikeda/nox3-language-plugin")
 }
 
+detekt {
+    config.setFrom("$rootDir/detekt-config.yml")
+    buildUponDefaultConfig = true
+}
+
 tasks {
     // A configuração explícita do jvmTarget não é mais necessária aqui,
     // pois estamos usando jvmToolchain no bloco kotlin {}.
@@ -82,5 +94,9 @@ tasks {
 
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
+    }
+
+    named("verifyPlugin") {
+        dependsOn("test")
     }
 }
