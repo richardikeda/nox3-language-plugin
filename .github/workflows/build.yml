@@ -73,6 +73,10 @@ jobs:
       - name: Run Tests
         run: ./gradlew test
 
+      # Run detekt static analysis
+      - name: Run Detekt
+        run: ./gradlew detekt
+
       # Collect Tests Result of failed tests
       - name: Collect Tests Result
         if: ${{ failure() }}
@@ -81,24 +85,18 @@ jobs:
           name: tests-result
           path: ${{ github.workspace }}/build/reports/tests
 
-      # Cache Plugin Verifier IDEs
-      - name: Setup Plugin Verifier IDEs Cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
-          key: plugin-verifier-${{ hashFiles('build/listProductsReleases.txt') }}
+      # Verify plugin against IDE
+      - name: Verify Plugin
+        run: ./gradlew verifyPlugin
 
-      # Run Verify Plugin task and IntelliJ Plugin Verifier tool
-      - name: Run Plugin Verification tasks
-        run: ./gradlew runPluginVerifier -Pplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }}
 
-      # Collect Plugin Verifier Result
-      - name: Collect Plugin Verifier Result
+      # Collect verification result
+      - name: Collect Verification Result
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: pluginVerifier-result
-          path: ${{ github.workspace }}/build/reports/pluginVerifier
+          path: ${{ github.workspace }}/build/reports/verifyPlugin
 
       # Run Qodana inspections
       - name: Qodana - Code Inspection
