@@ -1,6 +1,6 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.enterscript.noX3LanguagePlugin</id>
+    <id>com.enterscript.nox3language</id>
     <name>Non Official X3 Language</name>
     <vendor email="richard@enterscript.com" url="https://enterscript.com">Richard Ikeda</vendor>
     <description><![CDATA[ Non Official X3 Plugin.<br> <em>Basic X3 editor for IntelliJ</em> ]]></description>
