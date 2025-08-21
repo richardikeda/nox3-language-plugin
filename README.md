@@ -1,8 +1,8 @@
 # nox3-language
 
 ![Build](https://github.com/richardikeda/nox3-language-plugin/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/com.enterscript.nox3language.svg)](https://plugins.jetbrains.com/plugin/com.enterscript.nox3language)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/com.enterscript.nox3language.svg)](https://plugins.jetbrains.com/plugin/com.enterscript.nox3language)
 
 ## Template ToDo list
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
