@@ -80,6 +80,26 @@ intellijPlatform {
     }
 }
 
+qodana {
+    projectPath.set(projectDir.absolutePath)
+    cachePath.set(layout.projectDirectory.dir(".qodana").asFile.absolutePath)
+    resultsPath.set(layout.buildDirectory.dir("qodana").map { it.asFile.absolutePath })
+}
+
+kover {
+    reports {
+        total {
+            html {
+                onCheck.set(true)
+            }
+            xml {
+                onCheck.set(true)
+                xmlFile.set(layout.buildDirectory.file("reports/kover/report.xml"))
+            }
+        }
+    }
+}
+
 tasks {
     named("verifyPlugin") {
         dependsOn("test")
