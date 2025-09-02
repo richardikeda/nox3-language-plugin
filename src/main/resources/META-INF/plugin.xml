@@ -12,8 +12,8 @@
 
     <actions>
         <!-- Register action in the New menu -->
-        <action id="com.enterscript.noX3LanguagePlugin.MenuAction"
-                class="com.enterscript.noX3LanguagePlugin.MenuAction"
+        <action id="com.enterscript.nox3languageplugin.MenuAction"
+                class="com.enterscript.nox3languageplugin.MenuAction"
                 text="Create X3 Package">
             <add-to-group group-id="NewGroup" anchor="last" />
         </action>
@@ -21,32 +21,32 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="X3 Language"
-                  implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3FileType"
+                  implementationClass="com.enterscript.nox3languageplugin.language.NOX3FileType"
                   fieldName="INSTANCE"
                   language="X3"
                   extensions="src"/>
         <lang.parserDefinition
                 language="X3"
-                implementationClass="com.enterscript.noX3LanguagePlugin.language.parser.NOX3ParserDefinition"/>
+                implementationClass="com.enterscript.nox3languageplugin.language.parser.NOX3ParserDefinition"/>
         <lang.syntaxHighlighterFactory
                 language="X3"
-                implementationClass="com.enterscript.noX3LanguagePlugin.language.syntax.NOX3SyntaxHighlighterFactory"/>
+                implementationClass="com.enterscript.nox3languageplugin.language.syntax.NOX3SyntaxHighlighterFactory"/>
         <colorSettingsPage
-                implementation="com.enterscript.noX3LanguagePlugin.language.NOX3ColorSettingsPage"/>
+                implementation="com.enterscript.nox3languageplugin.language.NOX3ColorSettingsPage"/>
         <annotator
                 language="X3"
-                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3Annotator"/>
+                implementationClass="com.enterscript.nox3languageplugin.language.NOX3Annotator"/>
         <completion.contributor
                 language="X3"
-                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3CompletionContributor"/>
+                implementationClass="com.enterscript.nox3languageplugin.language.NOX3CompletionContributor"/>
         <psi.referenceContributor
-                implementation="com.enterscript.noX3LanguagePlugin.language.NOX3ReferenceContributor"/>
+                implementation="com.enterscript.nox3languageplugin.language.NOX3ReferenceContributor"/>
         <lang.refactoringSupport
                 language="X3"
-                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3RefactoringSupportProvider"/>
+                implementationClass="com.enterscript.nox3languageplugin.language.NOX3RefactoringSupportProvider"/>
         <codeInsight.lineMarkerProvider
                 language="JAVA"
-                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3LineMarkerProvider"/>
+                implementationClass="com.enterscript.nox3languageplugin.language.NOX3LineMarkerProvider"/>
         <editorColorsScheme name="Nox3 Dark" path="/META-INF/Nox3Dark.icls"/>
         <localInspection
                 language="JAVA"
@@ -54,12 +54,12 @@
                 displayName="NOX3 function call validator"
                 groupName="NOX3"
                 enabledByDefault="true"
-                implementationClass="com.enterscript.noX3LanguagePlugin.language.NOX3FunctionCallInspection"/>
+                implementationClass="com.enterscript.nox3languageplugin.language.NOX3FunctionCallInspection"/>
 
     </extensions>
 
     <applicationListeners>
-<!--        <listener class="com.enterscript.noX3LanguagePlugin.listeners.MyProjectManagerListener"-->
+<!--        <listener class="com.enterscript.nox3languageplugin.listeners.MyProjectManagerListener"-->
 <!--                  topic="com.intellij.openapi.project.ProjectManagerListener"/>-->
     </applicationListeners>
 </idea-plugin>
