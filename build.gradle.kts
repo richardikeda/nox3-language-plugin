@@ -1,57 +1,46 @@
-// build.gradle.kts ATUALIZADO
 import org.jetbrains.changelog.Changelog
-
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
 fun properties(key: String) = project.findProperty(key).toString()
 
-// As versões dos plugins foram atualizadas para as mais recentes e estáveis.
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.23"
-    id("org.jetbrains.intellij") version "1.17.2"
-    id("org.jetbrains.changelog") version "2.2.0"
-    id("io.gitlab.arturbosch.detekt") version "1.23.5"
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.intelliJPlatform)
+    alias(libs.plugins.changelog)
+    alias(libs.plugins.qodana)
+    alias(libs.plugins.kover)
 }
 
 group = properties("pluginGroup")
 version = properties("pluginVersion")
 
+kotlin {
+    jvmToolchain(21)
+}
+
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    testImplementation(kotlin("test-junit"))
-}
-
-configurations.all {
-    resolutionStrategy {
-        force("com.fasterxml.jackson.core:jackson-core:2.15.3")
+    intellijPlatform {
+        defaultRepositories()
     }
 }
 
-// Bloco Kotlin agora usa jvmToolchain para garantir que o JDK 17 seja usado.
-// Isso corrige o erro de compilação original.
-kotlin {
-    jvmToolchain(17)
+dependencies {
+    testImplementation(libs.junit)
+    testImplementation(libs.opentest4j)
+
+    intellijPlatform {
+        create(properties("platformType"), properties("platformVersion"))
+        bundledPlugins("com.intellij.java")
+        plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
+        testFramework(TestFrameworkType.Platform)
+    }
 }
 
-// Configure IntelliJ Platform plugin
-// A versão do IntelliJ foi atualizada.
-intellij {
-    pluginName.set(properties("pluginName"))
-    version.set(properties("platformVersion"))
-    type.set("IC") // IC para Community Edition
-
-    // Dependências de plugins (se houver)
-    plugins.set(listOf("com.intellij.java"))
-}
-
-// Configure Changelog plugin
 changelog {
     version.set(project.version.toString())
     path.set(file("CHANGELOG.md").absolutePath)
-    // A configuração do changelog foi mantida como estava no seu projeto.
     header.set(project.version.toString())
     itemPrefix.set("*")
     lineSeparator.set("\n")
@@ -59,44 +48,26 @@ changelog {
     repositoryUrl.set("https://github.com/richardikeda/nox3-language-plugin")
 }
 
-detekt {
-    config.setFrom("$rootDir/detekt-config.yml")
-    buildUponDefaultConfig = true
+intellijPlatform {
+    pluginConfiguration {
+        name = properties("pluginName")
+        version = properties("pluginVersion")
+        val changelog = project.changelog
+        changeNotes = provider {
+            changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML)
+        }
+    }
+    signing {
+        certificateChain = providers.environmentVariable("CERTIFICATE_CHAIN")
+        privateKey = providers.environmentVariable("PRIVATE_KEY")
+        password = providers.environmentVariable("PRIVATE_KEY_PASSWORD")
+    }
+    publishing {
+        token = providers.environmentVariable("PUBLISH_TOKEN")
+    }
 }
 
 tasks {
-    // A configuração explícita do jvmTarget não é mais necessária aqui,
-    // pois estamos usando jvmToolchain no bloco kotlin {}.
-
-    withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
-    }
-
-    patchPluginXml {
-        // As versões since/until agora são derivadas automaticamente da versão do IntelliJ
-        // definida no bloco intellij {}. É mais seguro e menos propenso a erros.
-        changeNotes.set(provider {
-            changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML)
-        })
-    }
-
-    // O restante das suas tarefas (runIdeForUiTests, signPlugin, etc.) foi mantido.
-    runIdeForUiTests {
-        systemProperty("robot-server.port", "8082")
-        systemProperty("ide.mac.message.dialogs.as.sheets", "false")
-    }
-
-    signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
-    }
-
-    publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
-    }
-
     named("verifyPlugin") {
         dependsOn("test")
     }
