@@ -1,5 +1,8 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+import org.jetbrains.grammarkit.tasks.GenerateLexerTask
+import org.jetbrains.grammarkit.tasks.GenerateParserTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = project.findProperty(key).toString()
 
@@ -10,6 +13,7 @@ plugins {
     alias(libs.plugins.changelog)
     alias(libs.plugins.qodana)
     alias(libs.plugins.kover)
+    alias(libs.plugins.grammarkit)
 }
 
 group = properties("pluginGroup")
@@ -49,6 +53,26 @@ dependencies {
         )
         testFramework(TestFrameworkType.Platform)
     }
+}
+
+sourceSets["main"].kotlin.srcDir("build/gen")
+
+val generateNOX3Lexer by tasks.registering(GenerateLexerTask::class) {
+    sourceFile.set(file("src/main/grammars/NOX3.flex"))
+    targetOutputDir.set(layout.buildDirectory.dir("gen/com/enterscript/noX3LanguagePlugin/language/lexer"))
+    purgeOldFiles.set(true)
+}
+
+val generateNOX3Parser by tasks.registering(GenerateParserTask::class) {
+    sourceFile.set(file("src/main/grammars/NOX3.bnf"))
+    targetRootOutputDir.set(layout.buildDirectory.dir("gen"))
+    pathToParser.set("com/enterscript/noX3LanguagePlugin/language/psi/impl/parser/NOX3Parser")
+    pathToPsiRoot.set("com/enterscript/noX3LanguagePlugin/language/psi")
+    purgeOldFiles.set(true)
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    dependsOn(generateNOX3Lexer, generateNOX3Parser)
 }
 
 changelog {
