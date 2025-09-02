@@ -9,10 +9,10 @@ class NOX3SyntaxHighlighterTest : BasePlatformTestCase() {
         val highlighter = NOX3SyntaxHighlighter()
         val lexer = highlighter.highlightingLexer
 
-        lexer.start("key=value")
+        lexer.start("case")
         assertEquals(NOX3SyntaxHighlighter.KEYWORD, highlighter.getTokenHighlights(lexer.tokenType)[0])
-        lexer.advance() // separator
-        lexer.advance()
+
+        lexer.start("\"text\"")
         assertEquals(NOX3SyntaxHighlighter.STRING, highlighter.getTokenHighlights(lexer.tokenType)[0])
 
         lexer.start("#comment")

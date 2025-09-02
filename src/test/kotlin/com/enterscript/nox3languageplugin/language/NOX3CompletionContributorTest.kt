@@ -8,8 +8,9 @@ class NOX3CompletionContributorTest : BasePlatformTestCase() {
         myFixture.addFileToProject("other.nox3", "projectKey=1")
         myFixture.configureByText("test.nox3", "<caret>")
         val completions = myFixture.completeBasic().map { it.lookupString }
-        assertTrue("if" in completions)
-        assertTrue("print()" in completions)
+        assertTrue("case" in completions)
+        assertTrue("user" in completions)
+        assertTrue("len()" in completions)
         assertTrue("projectKey" in completions)
     }
 }

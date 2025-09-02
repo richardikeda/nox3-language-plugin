@@ -26,6 +26,18 @@ ENDIF=(?i:endif)
 FOR=(?i:for)
 TO=(?i:to)
 ENDFOR=(?i:endfor)
+ELSE=(?i:else)
+WHILE=(?i:while)
+CASE=(?i:case)
+WHEN=(?i:when)
+ENDCASE=(?i:endcase)
+REPEAT=(?i:repeat)
+UNTIL=(?i:until)
+PRINT=(?i:print)
+LEN=(?i:len)
+SQRT=(?i:sqrt)
+USER=(?i:user)
+SYSDATE=(?i:sysdate)
 
 %%
 
@@ -38,6 +50,18 @@ ENDFOR=(?i:endfor)
 {FOR}         { return NOX3Types.FOR; }
 {TO}          { return NOX3Types.TO; }
 {ENDFOR}      { return NOX3Types.ENDFOR; }
+{ELSE}        { return NOX3Types.ELSE; }
+{WHILE}       { return NOX3Types.WHILE; }
+{CASE}        { return NOX3Types.CASE; }
+{WHEN}        { return NOX3Types.WHEN; }
+{ENDCASE}     { return NOX3Types.ENDCASE; }
+{REPEAT}      { return NOX3Types.REPEAT; }
+{UNTIL}       { return NOX3Types.UNTIL; }
+{PRINT}       { return NOX3Types.PRINT; }
+{LEN}         { return NOX3Types.LEN; }
+{SQRT}        { return NOX3Types.SQRT; }
+{USER}        { return NOX3Types.USER; }
+{SYSDATE}     { return NOX3Types.SYSDATE; }
 
 "="           { return NOX3Types.SEPARATOR; }
 {STRING}      { return NOX3Types.STRING; }

@@ -21,11 +21,8 @@ class NOX3CompletionContributor : CompletionContributor() {
                     context: ProcessingContext,
                     resultSet: CompletionResultSet
                 ) {
-                    // keywords
-                    KEYWORDS.forEach { resultSet.addElement(LookupElementBuilder.create(it)) }
-
-                    // built‑in functions
-                    FUNCTIONS.forEach { resultSet.addElement(LookupElementBuilder.create("$it()")) }
+                    // glossary terms
+                    GLOSSARY.forEach { resultSet.addElement(LookupElementBuilder.create(it)) }
 
                     // project symbols (property keys)
                     val project = parameters.position.project
@@ -38,7 +35,13 @@ class NOX3CompletionContributor : CompletionContributor() {
     }
 
     private companion object {
-        val KEYWORDS = listOf("if", "else", "while", "function")
-        val FUNCTIONS = listOf("print", "len", "sqrt")
+        val GLOSSARY = listOf(
+            // instructions
+            "if", "endif", "for", "to", "endfor", "else", "while", "case", "when", "endcase", "repeat", "until",
+            // system variables
+            "user", "sysdate",
+            // functions
+            "print()", "len()", "sqrt()"
+        )
     }
 }

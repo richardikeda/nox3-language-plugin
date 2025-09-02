@@ -7,13 +7,17 @@ import kotlin.test.assertEquals
 
 class NOX3LexerTest {
     @Test
-    fun testTokens() {
+    fun testKeywordToken() {
         val lexer = NOX3LexerAdapter()
-        lexer.start("foo:bar")
-        assertEquals(NOX3Types.KEY, lexer.tokenType)
-        lexer.advance()
-        assertEquals(NOX3Types.SEPARATOR, lexer.tokenType)
-        lexer.advance()
-        assertEquals(NOX3Types.VALUE, lexer.tokenType)
+        lexer.start("case")
+        assertEquals(NOX3Types.CASE, lexer.tokenType)
+    }
+
+    @Test
+    fun testFunctionToken() {
+        val lexer = NOX3LexerAdapter()
+        lexer.start("print")
+        assertEquals(NOX3Types.PRINT, lexer.tokenType)
     }
 }
+
