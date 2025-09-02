@@ -4,6 +4,7 @@
     <name>Non Official X3 Language</name>
     <vendor email="richard@enterscript.com" url="https://enterscript.com">Richard Ikeda</vendor>
     <description><![CDATA[ Non Official X3 Plugin.<br> <em>Basic X3 editor for IntelliJ</em> ]]></description>
+    <icon dark="META-INF/pluginIcon_dark.svg">META-INF/pluginIcon.svg</icon>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
