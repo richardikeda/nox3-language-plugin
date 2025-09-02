@@ -59,15 +59,15 @@ sourceSets["main"].kotlin.srcDir("build/gen")
 
 val generateNOX3Lexer by tasks.registering(GenerateLexerTask::class) {
     sourceFile.set(file("src/main/grammars/NOX3.flex"))
-    targetOutputDir.set(layout.buildDirectory.dir("gen/com/enterscript/noX3LanguagePlugin/language/lexer"))
+    targetOutputDir.set(layout.buildDirectory.dir("gen/com/enterscript/nox3languageplugin/language/lexer"))
     purgeOldFiles.set(true)
 }
 
 val generateNOX3Parser by tasks.registering(GenerateParserTask::class) {
     sourceFile.set(file("src/main/grammars/NOX3.bnf"))
     targetRootOutputDir.set(layout.buildDirectory.dir("gen"))
-    pathToParser.set("com/enterscript/noX3LanguagePlugin/language/psi/impl/parser/NOX3Parser")
-    pathToPsiRoot.set("com/enterscript/noX3LanguagePlugin/language/psi")
+    pathToParser.set("com/enterscript/nox3languageplugin/language/psi/impl/parser/NOX3Parser")
+    pathToPsiRoot.set("com/enterscript/nox3languageplugin/language/psi")
     purgeOldFiles.set(true)
 }
 
