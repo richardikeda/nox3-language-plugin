@@ -1,5 +1,6 @@
 .gradle
 .idea
+.intellijPlatform/
 build
 /src/test/kotlin/com/enterscript/noX3LanguagePlugin/MyPluginTest.kt
 /build/gen/
