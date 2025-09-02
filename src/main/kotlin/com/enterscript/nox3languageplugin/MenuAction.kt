@@ -5,8 +5,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.application.runWriteAction
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.LocalFileSystem
-import java.nio.file.Files
-import java.nio.file.Path
+import com.intellij.openapi.vfs.VirtualFile
 
 /**
  * Action that creates the X3 language package structure.
@@ -23,15 +22,18 @@ class MenuAction : AnAction() {
         ) ?: return
 
         val basePath = project.basePath ?: return
+        val baseDir = LocalFileSystem.getInstance().refreshAndFindFileByPath(basePath) ?: return
 
         runWriteAction {
-            val packagePath = Path.of(basePath, "src", "main", "kotlin", "com", organization, "x3", "language")
-            Files.createDirectories(packagePath)
-            val filePath = packagePath.resolve("Language.kt")
-            if (!Files.exists(filePath)) {
-                Files.writeString(filePath, "package com.$organization.x3.language\n\nclass Language")
+            val dirs = listOf("src", "main", "kotlin", "com", organization, "x3", "language")
+            var current: VirtualFile = baseDir
+            for (dir in dirs) {
+                current = current.findChild(dir) ?: current.createChildDirectory(this, dir)
             }
-            LocalFileSystem.getInstance().refreshAndFindFileByPath(filePath.toString())
+            current.findChild("Language.kt") ?: current.createChildData(this, "Language.kt").apply {
+                setBinaryContent("package com.$organization.x3.language\n\nclass Language".toByteArray())
+            }
         }
     }
 }
+
