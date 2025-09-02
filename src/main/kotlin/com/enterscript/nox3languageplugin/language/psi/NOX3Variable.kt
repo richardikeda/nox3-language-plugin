@@ -1,3 +1,3 @@
-package com.enterscript.noX3LanguagePlugin.language.psi
+package com.enterscript.nox3languageplugin.language.psi
 
 interface NOX3Variable : NOX3NamedElement

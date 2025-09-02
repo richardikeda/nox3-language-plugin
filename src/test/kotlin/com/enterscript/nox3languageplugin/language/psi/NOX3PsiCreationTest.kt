@@ -1,4 +1,4 @@
-package com.enterscript.noX3LanguagePlugin.language.psi
+package com.enterscript.nox3languageplugin.language.psi
 
 import com.enterscript.nox3languageplugin.language.NOX3FileType
 import com.intellij.psi.PsiFileFactory

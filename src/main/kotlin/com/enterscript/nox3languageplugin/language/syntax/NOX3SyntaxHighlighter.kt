@@ -1,7 +1,7 @@
 package com.enterscript.nox3languageplugin.language.syntax
 
 import com.enterscript.nox3languageplugin.language.lexer.NOX3LexerAdapter
-import com.enterscript.noX3LanguagePlugin.language.psi.NOX3Types
+import com.enterscript.nox3languageplugin.language.psi.NOX3Types
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.HighlighterColors
