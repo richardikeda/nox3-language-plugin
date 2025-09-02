@@ -25,6 +25,15 @@ Thanks for your contributions!
 
 <!-- Plugin description end -->
 
+## Contributing
+
+Before contributing, please read the [CONTRIBUTING](CONTRIBUTING.md) guide and our [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md).
+
+## License
+
+This project is licensed under the terms of the [Apache License 2.0](LICENSE).
+
+
 ## Installation
 
 - Using IDE built-in plugin system:
