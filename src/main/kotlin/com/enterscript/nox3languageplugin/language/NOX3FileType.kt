@@ -4,9 +4,9 @@ import com.enterscript.nox3languageplugin.icons.NOX3Icons
 import com.intellij.openapi.fileTypes.LanguageFileType
 import javax.swing.Icon
 
-class NOX3FileType private constructor(): LanguageFileType(NOX3Language.INSTANCE) {
+class NOX3FileType private constructor() : LanguageFileType(NOX3Language.INSTANCE) {
 
-    override fun getName()= "X3 Language"
+    override fun getName() = "X3 Language"
 
     override fun getDescription() = "X3 language file"
 
