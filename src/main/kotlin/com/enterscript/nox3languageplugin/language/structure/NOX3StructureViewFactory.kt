@@ -1,7 +1,7 @@
 package com.enterscript.nox3languageplugin.language.structure
 
-import com.enterscript.nox3languageplugin.language.psi.NOX3File
-import com.enterscript.nox3languageplugin.language.psi.NOX3Property
+import com.enterscript.noX3LanguagePlugin.language.psi.NOX3File
+import com.enterscript.noX3LanguagePlugin.language.psi.NOX3Property
 import com.intellij.ide.structureView.StructureViewBuilder
 import com.intellij.ide.structureView.StructureViewModel
 import com.intellij.ide.structureView.StructureViewTreeElement

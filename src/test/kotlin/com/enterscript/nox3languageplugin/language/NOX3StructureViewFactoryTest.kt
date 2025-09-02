@@ -1,6 +1,6 @@
 package com.enterscript.nox3languageplugin.language
 
-import com.enterscript.nox3languageplugin.language.psi.NOX3File
+import com.enterscript.noX3LanguagePlugin.language.psi.NOX3File
 import com.enterscript.nox3languageplugin.language.structure.NOX3StructureViewFactory
 import com.intellij.ide.structureView.StructureViewTreeElement
 import com.intellij.testFramework.fixtures.BasePlatformTestCase

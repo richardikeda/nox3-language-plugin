@@ -1,7 +1,7 @@
 package com.enterscript.nox3languageplugin.language
 
-import com.enterscript.nox3languageplugin.language.psi.NOX3File
-import com.enterscript.nox3languageplugin.language.psi.NOX3Variable
+import com.enterscript.noX3LanguagePlugin.language.psi.NOX3File
+import com.enterscript.noX3LanguagePlugin.language.psi.NOX3Variable
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiManager
 import com.intellij.psi.search.FileTypeIndex
