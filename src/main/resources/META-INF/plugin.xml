@@ -58,8 +58,4 @@
 
     </extensions>
 
-    <applicationListeners>
-<!--        <listener class="com.enterscript.nox3languageplugin.listeners.MyProjectManagerListener"-->
-<!--                  topic="com.intellij.openapi.project.ProjectManagerListener"/>-->
-    </applicationListeners>
 </idea-plugin>
