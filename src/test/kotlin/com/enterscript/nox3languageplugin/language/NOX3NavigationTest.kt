@@ -1,6 +1,6 @@
 package com.enterscript.nox3languageplugin.language
 
-import com.enterscript.nox3languageplugin.language.psi.NOX3Property
+import com.enterscript.noX3LanguagePlugin.language.psi.NOX3Property
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

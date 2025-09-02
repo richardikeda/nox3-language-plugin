@@ -1,7 +1,7 @@
 package com.enterscript.nox3languageplugin.language.lexer
 
 import com.enterscript.nox3languageplugin.language.lexer.NOX3LexerAdapter
-import com.enterscript.nox3languageplugin.language.psi.NOX3Types
+import com.enterscript.noX3LanguagePlugin.language.psi.NOX3Types
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

@@ -1,7 +1,7 @@
 package com.enterscript.nox3languageplugin.language
 
 import com.enterscript.nox3languageplugin.icons.NOX3Icons
-import com.enterscript.nox3languageplugin.language.psi.NOX3Variable
+import com.enterscript.noX3LanguagePlugin.language.psi.NOX3Variable
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.openapi.util.TextRange
