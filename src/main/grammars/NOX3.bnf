@@ -17,7 +17,7 @@
 
 file ::= element_*
 
-private element_ ::= (property | if_statement | for_statement | COMMENT | CRLF)
+private element_ ::= (property | if_statement | for_statement | case_statement | repeat_statement | COMMENT | CRLF)
 
 property ::= IDENTIFIER SEPARATOR value {
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
@@ -29,6 +29,12 @@ if_statement ::= IF expression CRLF element_* ENDIF
 
 for_statement ::= FOR IDENTIFIER SEPARATOR expression TO expression CRLF element_* ENDFOR
 
+case_statement ::= CASE expression CRLF (WHEN expression CRLF element_*)+ ENDCASE
+
+repeat_statement ::= REPEAT CRLF element_* UNTIL expression
+
 value ::= expression
 
-expression ::= NUMBER | STRING | IDENTIFIER
+function_call ::= (IDENTIFIER | PRINT | LEN | SQRT) '(' expression? ')'
+
+expression ::= NUMBER | STRING | IDENTIFIER | USER | SYSDATE | function_call

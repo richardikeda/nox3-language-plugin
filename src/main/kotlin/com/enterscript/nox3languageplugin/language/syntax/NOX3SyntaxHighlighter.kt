@@ -24,10 +24,14 @@ class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
         private val SEPARATOR: TextAttributesKey = createTextAttributesKey("NOX3_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
 
         private val keys = HashMap<IElementType, TextAttributesKey>().apply {
-            put(NOX3Types.KEY, KEYWORD)
-            put(NOX3Types.VALUE, STRING)
+            listOf(
+                NOX3Types.IF, NOX3Types.ENDIF, NOX3Types.FOR, NOX3Types.TO, NOX3Types.ENDFOR,
+                NOX3Types.ELSE, NOX3Types.WHILE, NOX3Types.CASE, NOX3Types.WHEN, NOX3Types.ENDCASE,
+                NOX3Types.REPEAT, NOX3Types.UNTIL, NOX3Types.PRINT, NOX3Types.LEN, NOX3Types.SQRT,
+                NOX3Types.USER, NOX3Types.SYSDATE
+            ).forEach { put(it, KEYWORD) }
+            put(NOX3Types.STRING, STRING)
             put(NOX3Types.COMMENT, COMMENT)
-            put(NOX3Types.COMMENT_MULTI_LINE, COMMENT)
             put(NOX3Types.SEPARATOR, SEPARATOR)
             put(TokenType.BAD_CHARACTER, BAD_CHARACTER)
         }
