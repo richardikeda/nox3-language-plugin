@@ -32,8 +32,21 @@ dependencies {
 
     intellijPlatform {
         create(properties("platformType"), properties("platformVersion"))
-        bundledPlugins("com.intellij.java")
-        plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
+        plugins(
+            providers.gradleProperty("platformPlugins").map {
+                it.split(',').map(String::trim).filter(String::isNotEmpty)
+            }
+        )
+        bundledPlugins(
+            providers.gradleProperty("platformBundledPlugins").map {
+                it.split(',').map(String::trim).filter(String::isNotEmpty)
+            }
+        )
+        bundledModules(
+            providers.gradleProperty("platformBundledModules").map {
+                it.split(',').map(String::trim).filter(String::isNotEmpty)
+            }
+        )
         testFramework(TestFrameworkType.Platform)
     }
 }
