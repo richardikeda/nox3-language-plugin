@@ -1,16 +1,20 @@
 package com.enterscript.nox3languageplugin
 
-import com.intellij.openapi.command.WriteCommandAction
+import com.intellij.openapi.application.runWriteAction
 import com.intellij.openapi.ui.Messages
-import com.intellij.openapi.vfs.VfsUtil
+import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.testFramework.PlatformTestCase
 import com.intellij.testFramework.TestActionEvent
+import java.nio.file.Files
+import java.nio.file.Path
 
 class MenuActionTest : PlatformTestCase() {
     override fun setUp() {
         super.setUp()
-        WriteCommandAction.runWriteCommandAction(project) {
-            VfsUtil.createDirectoryIfMissing(project.baseDir, "src/main/kotlin")
+        runWriteAction {
+            val srcPath = Path.of(project.basePath!!, "src", "main", "kotlin")
+            Files.createDirectories(srcPath)
+            LocalFileSystem.getInstance().refreshAndFindFileByPath(srcPath.toString())
         }
     }
 
@@ -23,7 +27,8 @@ class MenuActionTest : PlatformTestCase() {
         } finally {
             Messages.setTestInputDialog(null)
         }
-        val file = project.baseDir.findFileByRelativePath("src/main/kotlin/com/acme/x3/language/Language.kt")
+        val filePath = Path.of(project.basePath!!, "src", "main", "kotlin", "com", "acme", "x3", "language", "Language.kt")
+        val file = LocalFileSystem.getInstance().refreshAndFindFileByPath(filePath.toString())
         assertNotNull("Language.kt should be created", file)
     }
 }
