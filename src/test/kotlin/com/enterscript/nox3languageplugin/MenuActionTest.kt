@@ -3,18 +3,21 @@ package com.enterscript.nox3languageplugin
 import com.intellij.openapi.application.runWriteAction
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.testFramework.PlatformTestCase
 import com.intellij.testFramework.TestActionEvent
-import java.nio.file.Files
-import java.nio.file.Path
 
 class MenuActionTest : PlatformTestCase() {
     override fun setUp() {
         super.setUp()
+        val basePath = project.basePath ?: return
+        val baseDir = LocalFileSystem.getInstance().refreshAndFindFileByPath(basePath) ?: return
+
         runWriteAction {
-            val srcPath = Path.of(project.basePath!!, "src", "main", "kotlin")
-            Files.createDirectories(srcPath)
-            LocalFileSystem.getInstance().refreshAndFindFileByPath(srcPath.toString())
+            var current: VirtualFile = baseDir
+            for (dir in listOf("src", "main", "kotlin")) {
+                current = current.findChild(dir) ?: current.createChildDirectory(this, dir)
+            }
         }
     }
 
@@ -27,8 +30,11 @@ class MenuActionTest : PlatformTestCase() {
         } finally {
             Messages.setTestInputDialog(null)
         }
-        val filePath = Path.of(project.basePath!!, "src", "main", "kotlin", "com", "acme", "x3", "language", "Language.kt")
-        val file = LocalFileSystem.getInstance().refreshAndFindFileByPath(filePath.toString())
+
+        val basePath = project.basePath ?: return
+        val baseDir = LocalFileSystem.getInstance().refreshAndFindFileByPath(basePath) ?: return
+        val file = baseDir.findFileByRelativePath("src/main/kotlin/com/acme/x3/language/Language.kt")
         assertNotNull("Language.kt should be created", file)
     }
 }
+
