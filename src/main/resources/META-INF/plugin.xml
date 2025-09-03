@@ -45,6 +45,12 @@
         <lang.refactoringSupport
                 language="X3"
                 implementationClass="com.enterscript.nox3languageplugin.language.NOX3RefactoringSupportProvider"/>
+        <lang.braceMatcher
+                language="X3"
+                implementationClass="com.enterscript.nox3languageplugin.language.structure.NOX3BraceMatcher"/>
+        <lang.foldingBuilder
+                language="X3"
+                implementationClass="com.enterscript.nox3languageplugin.language.structure.NOX3FoldingBuilder"/>
         <codeInsight.lineMarkerProvider
                 language="JAVA"
                 implementationClass="com.enterscript.nox3languageplugin.language.NOX3LineMarkerProvider"/>
