@@ -3,6 +3,7 @@ import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 import org.jetbrains.grammarkit.tasks.GenerateLexerTask
 import org.jetbrains.grammarkit.tasks.GenerateParserTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.enterscript.nox3languageplugin.grammar.GenerateGrammarTask
 
 fun properties(key: String) = project.findProperty(key).toString()
 
@@ -57,19 +58,23 @@ dependencies {
 
 sourceSets["main"].kotlin.srcDir("build/gen")
 
-val generateNOX3Lexer by tasks.registering(GenerateLexerTask::class) {
-    sourceFile.set(file("src/main/grammars/NOX3.flex"))
-    targetOutputDir.set(layout.buildDirectory.dir("gen/com/enterscript/nox3languageplugin/language/lexer"))
-    purgeOldFiles.set(true)
-}
+  val generateGrammar by tasks.registering(GenerateGrammarTask::class)
 
-val generateNOX3Parser by tasks.registering(GenerateParserTask::class) {
-    sourceFile.set(file("src/main/grammars/NOX3.bnf"))
-    targetRootOutputDir.set(layout.buildDirectory.dir("gen"))
-    pathToParser.set("com/enterscript/nox3languageplugin/language/psi/impl/parser/NOX3Parser")
-    pathToPsiRoot.set("com/enterscript/nox3languageplugin/language/psi")
-    purgeOldFiles.set(true)
-}
+  val generateNOX3Lexer by tasks.registering(GenerateLexerTask::class) {
+      sourceFile.set(file("src/main/grammars/NOX3.flex"))
+      targetOutputDir.set(layout.buildDirectory.dir("gen/com/enterscript/nox3languageplugin/language/lexer"))
+      purgeOldFiles.set(true)
+      dependsOn(generateGrammar)
+  }
+
+  val generateNOX3Parser by tasks.registering(GenerateParserTask::class) {
+      sourceFile.set(file("src/main/grammars/NOX3.bnf"))
+      targetRootOutputDir.set(layout.buildDirectory.dir("gen"))
+      pathToParser.set("com/enterscript/nox3languageplugin/language/psi/impl/parser/NOX3Parser")
+      pathToPsiRoot.set("com/enterscript/nox3languageplugin/language/psi")
+      purgeOldFiles.set(true)
+      dependsOn(generateGrammar)
+  }
 
 tasks.withType<KotlinCompile>().configureEach {
     dependsOn(generateNOX3Lexer, generateNOX3Parser)
