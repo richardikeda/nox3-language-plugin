@@ -63,6 +63,14 @@
                 enabledByDefault="true"
                 implementationClass="com.enterscript.nox3languageplugin.language.NOX3FunctionCallInspection"/>
 
+        <localInspection
+                language="JAVA"
+                shortName="NOX3FunctionSideEffect"
+                displayName="NOX3 side-effect function in pure context"
+                groupName="NOX3"
+                enabledByDefault="true"
+                implementationClass="com.enterscript.nox3languageplugin.inspection.FunctionSideEffectInspection"/>
+
     </extensions>
 
 </idea-plugin>

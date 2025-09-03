@@ -36,7 +36,8 @@ class NOX3Annotator : Annotator {
     }
 
     companion object {
-        const val NOX3_PREFIX_STR: String = "nox"
+        // Prefix used to identify NOX3 function calls inside string literals
+        const val NOX3_PREFIX_STR: String = "X3"
         const val NOX3_SEPARATOR_STR: String = ":"
     }
 }
