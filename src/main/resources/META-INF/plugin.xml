@@ -51,6 +51,9 @@
         <lang.foldingBuilder
                 language="X3"
                 implementationClass="com.enterscript.nox3languageplugin.language.structure.NOX3FoldingBuilder"/>
+        <lang.formatter
+                language="X3"
+                implementationClass="com.enterscript.nox3languageplugin.language.format.NOX3FormattingModelBuilder"/>
         <codeInsight.lineMarkerProvider
                 language="JAVA"
                 implementationClass="com.enterscript.nox3languageplugin.language.NOX3LineMarkerProvider"/>
