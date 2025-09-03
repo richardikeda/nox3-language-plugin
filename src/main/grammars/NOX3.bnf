@@ -1,3 +1,4 @@
+// NOX3 grammar specification. This file is maintained manually.
 {
   parserClass="com.enterscript.nox3languageplugin.language.psi.impl.parser.NOX3Parser"
 
