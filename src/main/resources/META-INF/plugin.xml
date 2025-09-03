@@ -40,11 +40,23 @@
         <completion.contributor
                 language="X3"
                 implementationClass="com.enterscript.nox3languageplugin.language.NOX3CompletionContributor"/>
+        <lang.documentationProvider
+                language="X3"
+                implementationClass="com.enterscript.nox3languageplugin.language.NOX3DocumentationProvider"/>
         <psi.referenceContributor
                 implementation="com.enterscript.nox3languageplugin.language.NOX3ReferenceContributor"/>
         <lang.refactoringSupport
                 language="X3"
                 implementationClass="com.enterscript.nox3languageplugin.language.NOX3RefactoringSupportProvider"/>
+        <lang.braceMatcher
+                language="X3"
+                implementationClass="com.enterscript.nox3languageplugin.language.structure.NOX3BraceMatcher"/>
+        <lang.foldingBuilder
+                language="X3"
+                implementationClass="com.enterscript.nox3languageplugin.language.structure.NOX3FoldingBuilder"/>
+        <lang.formatter
+                language="X3"
+                implementationClass="com.enterscript.nox3languageplugin.language.format.NOX3FormattingModelBuilder"/>
         <codeInsight.lineMarkerProvider
                 language="JAVA"
                 implementationClass="com.enterscript.nox3languageplugin.language.NOX3LineMarkerProvider"/>
@@ -56,6 +68,14 @@
                 groupName="NOX3"
                 enabledByDefault="true"
                 implementationClass="com.enterscript.nox3languageplugin.language.NOX3FunctionCallInspection"/>
+
+        <localInspection
+                language="JAVA"
+                shortName="NOX3FunctionSideEffect"
+                displayName="NOX3 side-effect function in pure context"
+                groupName="NOX3"
+                enabledByDefault="true"
+                implementationClass="com.enterscript.nox3languageplugin.inspection.FunctionSideEffectInspection"/>
 
     </extensions>
 
