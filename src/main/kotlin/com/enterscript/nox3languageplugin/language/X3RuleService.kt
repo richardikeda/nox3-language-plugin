@@ -20,10 +20,24 @@ object X3RuleService {
 
     private val rules: List<Rule> by lazy { loadRules() }
 
+    enum class KeywordStatus {
+        Public,
+        Internal,
+        Deprecated,
+        DeprecatedClassic,
+        Unknown
+    }
+
+    data class KeywordInfo(val status: KeywordStatus, val replacement: String?)
+
+    private val keywordInfos: Map<String, KeywordInfo> by lazy { loadKeywordStatuses() }
+
     /**
      * Returns all rules that represent block constructs in the language.
      */
     fun blockRules(): List<Rule> = rules.filter { it.hasBlock }
+
+    fun keywordInfo(token: String): KeywordInfo? = keywordInfos[token.lowercase()]
 
     private fun loadRules(): List<Rule> {
         val path = Paths.get("x3_language_rules.csv")
@@ -42,6 +56,29 @@ object X3RuleService {
                     blockPair = parts[12].trim().ifEmpty { null }
                 )
             }.toList()
+        }
+    }
+
+    private fun loadKeywordStatuses(): Map<String, KeywordInfo> {
+        val path = Paths.get("x3_keywords_status.csv")
+        if (!Files.exists(path)) return emptyMap()
+        return Files.newBufferedReader(path).useLines { lines ->
+            lines.drop(1).mapNotNull { line ->
+                val parts = line.split(',', limit = 2)
+                if (parts.size < 2) return@mapNotNull null
+                val keyword = parts[0].trim().lowercase()
+                val statusText = parts[1].trim().trim('"')
+                val status = when {
+                    statusText.startsWith("Public", ignoreCase = true) -> KeywordStatus.Public
+                    statusText.startsWith("Internal", ignoreCase = true) -> KeywordStatus.Internal
+                    statusText.startsWith("Deprecated Classic", ignoreCase = true) ||
+                        statusText.startsWith("DeprecatedClassic", ignoreCase = true) -> KeywordStatus.DeprecatedClassic
+                    statusText.startsWith("Deprecated", ignoreCase = true) -> KeywordStatus.Deprecated
+                    else -> KeywordStatus.Unknown
+                }
+                val replacement = Regex("replaced by \\[(\\w+)\\]").find(statusText)?.groupValues?.get(1)
+                keyword to KeywordInfo(status, replacement)
+            }.toMap()
         }
     }
 }
