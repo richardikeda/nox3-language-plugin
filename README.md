@@ -25,6 +25,18 @@ Thanks for your contributions!
 
 <!-- Plugin description end -->
 
+## Build
+
+This project requires **JDK 17 or newer**. The Gradle wrapper is configured for
+Gradle 8.14 and will download it automatically. To compile and run the tests
+locally:
+
+```bash
+./gradlew build
+```
+
+The produced plugin distribution is available under `build/distributions`.
+
 ## Contributing
 
 Before contributing, please read the [CONTRIBUTING](CONTRIBUTING.md) guide and our [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md).
