@@ -7,3 +7,4 @@ build/*
 buildSrc/build/
 /src/test/kotlin/com/enterscript/noX3LanguagePlugin/MyPluginTest.kt
 /src/main/code_samples/
+/build
