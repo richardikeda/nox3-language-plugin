@@ -40,6 +40,9 @@
         <completion.contributor
                 language="X3"
                 implementationClass="com.enterscript.nox3languageplugin.language.NOX3CompletionContributor"/>
+        <lang.documentationProvider
+                language="X3"
+                implementationClass="com.enterscript.nox3languageplugin.language.NOX3DocumentationProvider"/>
         <psi.referenceContributor
                 implementation="com.enterscript.nox3languageplugin.language.NOX3ReferenceContributor"/>
         <lang.refactoringSupport
