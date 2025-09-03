@@ -5,7 +5,7 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/com.enterscript.nox3languageplugin.svg)](https://plugins.jetbrains.com/plugin/com.enterscript.nox3languageplugin)
 
 <!-- Plugin description -->
-nox3-language is an IntelliJ Platform plugin that adds support for X3-Language (L4J) used in Sage ERP X3.
+nox3-language is an IntelliJ Platform plugin that adds support for X3-Language (4GL) used in Sage ERP X3.
 
 #### This is not an official plugin; it is an independent development based on the X3 plugin for Sage ERP.
 
