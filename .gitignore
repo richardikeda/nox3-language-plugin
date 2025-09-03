@@ -1,7 +1,9 @@
 .gradle
 .idea
 .intellijPlatform/
-build
+build/*
+!build/gen/
+!build/gen/**
+buildSrc/build/
 /src/test/kotlin/com/enterscript/noX3LanguagePlugin/MyPluginTest.kt
-/build/gen/
 /src/main/code_samples/

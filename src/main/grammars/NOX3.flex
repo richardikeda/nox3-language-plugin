@@ -1,3 +1,4 @@
+// NOX3 lexer specification. This file is maintained manually.
 package com.enterscript.nox3languageplugin.language.lexer;
 
 import com.intellij.lexer.FlexLexer;
