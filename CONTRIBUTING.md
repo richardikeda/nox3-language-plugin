@@ -4,7 +4,7 @@ Thanks for your interest in contributing to this project!
 
 ## Build
 
-This project uses the Gradle build system and requires JDK 21.
+This project uses the Gradle build system and requires JDK 17.
 
 To build the plugin run:
 
