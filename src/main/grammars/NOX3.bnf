@@ -617,7 +617,7 @@ private function_decl_recover ::= !(END)
 
 property ::= IDENTIFIER SEPARATOR value {
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
-    implements="com.enterscript.nox3languageplugin.language.psi.NOX3NamedElement"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Property"
     methods=[getKey getValue getName setName getNameIdentifier]
 }
 
