@@ -41,6 +41,7 @@ class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
 
         private val KEYWORDS = setOf(
             NOX3Types.SUBPROG,
+            NOX3Types.VALUE,
             NOX3Types.GLOBAL,
             NOX3Types.LOCAL,
             NOX3Types.CLASS,
@@ -50,16 +51,39 @@ class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
             NOX3Types.ENDIF,
             NOX3Types.FOR,
             NOX3Types.TO,
-            NOX3Types.NEXT
+            NOX3Types.NEXT,
+            NOX3Types.CALL,
+            NOX3Types.FROM,
+            NOX3Types.CASE,
+            NOX3Types.WHEN,
+            NOX3Types.ENDCASE,
+            NOX3Types.RETURN,
+            NOX3Types.ONERRGO,
+            NOX3Types.TRBEGIN,
+            NOX3Types.COMMIT,
+            NOX3Types.ROLLBACK,
+            NOX3Types.FILTER,
+            NOX3Types.READ,
+            NOX3Types.UPDATE,
+            NOX3Types.WRITE,
+            NOX3Types.REWRITE,
+            NOX3Types.DELETE,
+            NOX3Types.GOSUB
         )
 
         private val OPERATORS = setOf(
             NOX3Types.SEPARATOR, // '='
             NOX3Types.PLUS,
             NOX3Types.MINUS,
+            NOX3Types.STAR,
+            NOX3Types.DIV,
+            NOX3Types.NEQ,
             NOX3Types.LPAREN,
             NOX3Types.RPAREN,
+            NOX3Types.LBRACKET,
+            NOX3Types.RBRACKET,
             NOX3Types.COMMA,
+            NOX3Types.ACTION,
             NOX3Types.DOT,
             NOX3Types.COLON
         )
