@@ -7,26 +7,26 @@ import com.intellij.psi.PsiElement
 
 object NOX3PsiImplUtil {
     @JvmStatic
-    fun getName(element: NOX3NamedElement): String? {
-        val idNode = element.node.findChildByType(NOX3Types.IDENTIFIER)
-        return idNode?.text
-    }
+      fun getName(element: NOX3NamedElement): String? {
+          val keyNode = element.node.findChildByType(NOX3Types.KEY)
+          return keyNode?.text
+      }
 
     @JvmStatic
-    fun setName(element: NOX3NamedElement, newName: String): PsiElement {
-        val idNode = element.node.findChildByType(NOX3Types.IDENTIFIER)
-        if (idNode != null) {
-            val newId = NOX3ElementFactory.createIdentifier(element, newName)
-            element.node.replaceChild(idNode, newId.node)
-        }
-        return element
-    }
+      fun setName(element: NOX3NamedElement, newName: String): PsiElement {
+          val keyNode = element.node.findChildByType(NOX3Types.KEY)
+          if (keyNode != null) {
+              val newKey = NOX3ElementFactory.createIdentifier(element, newName)
+              element.node.replaceChild(keyNode, newKey.node)
+          }
+          return element
+      }
 
     @JvmStatic
-    fun getNameIdentifier(element: NOX3NamedElement): PsiElement? {
-        val idNode = element.node.findChildByType(NOX3Types.IDENTIFIER)
-        return idNode?.psi
-    }
+      fun getNameIdentifier(element: NOX3NamedElement): PsiElement? {
+          val keyNode = element.node.findChildByType(NOX3Types.KEY)
+          return keyNode?.psi
+      }
 
     @JvmStatic
     fun getKey(property: NOX3Property): String? = getName(property)

@@ -20,7 +20,7 @@ class NOX3CompletionContributor : CompletionContributor() {
         // Top level keywords and glossary terms
         extend(
             CompletionType.BASIC,
-            PlatformPatterns.psiElement(NOX3Types.IDENTIFIER)
+            PlatformPatterns.psiElement(NOX3Types.KEY)
                 .withLanguage(NOX3Language.INSTANCE)
                 .withSuperParent(2, PsiFile::class.java),
             object : CompletionProvider<CompletionParameters>() {
@@ -56,10 +56,10 @@ class NOX3CompletionContributor : CompletionContributor() {
             }
         )
 
-        // Variables and properties from project stubs
+        // Properties from project stubs
         extend(
             CompletionType.BASIC,
-            PlatformPatterns.psiElement(NOX3Types.IDENTIFIER)
+            PlatformPatterns.psiElement(NOX3Types.KEY)
                 .withLanguage(NOX3Language.INSTANCE)
                 .andNot(
                     PlatformPatterns.psiElement()
@@ -73,9 +73,6 @@ class NOX3CompletionContributor : CompletionContributor() {
                 ) {
                     val project = parameters.position.project
 
-                    NOX3Util.findVariables(project).mapNotNull { it.name }.forEach {
-                        resultSet.addElement(LookupElementBuilder.create(it))
-                    }
                     NOX3Util.findProperties(project).mapNotNull { it.key }.forEach {
                         resultSet.addElement(LookupElementBuilder.create(it))
                     }
