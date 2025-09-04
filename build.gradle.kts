@@ -8,11 +8,11 @@ fun properties(key: String) = project.findProperty(key).toString()
 plugins {
     id("java")
     alias(libs.plugins.kotlin)
-    id("org.jetbrains.intellij.platform")
+    alias(libs.plugins.intellij.platform)
     alias(libs.plugins.changelog)
     alias(libs.plugins.qodana)
     alias(libs.plugins.kover)
-    id("org.jetbrains.grammarkit") version "2022.3.2.2"
+    alias(libs.plugins.grammarkit)
 }
 
 group = properties("pluginGroup")
