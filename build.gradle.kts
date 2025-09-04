@@ -13,7 +13,7 @@ plugins {
     alias(libs.plugins.changelog)
     alias(libs.plugins.qodana)
     alias(libs.plugins.kover)
-    alias(libs.plugins.grammarkit)
+    id("org.jetbrains.grammarkit") version "2022.3.2.2"
 }
 
 group = properties("pluginGroup")
@@ -57,13 +57,13 @@ dependencies {
 
 sourceSets["main"].kotlin.srcDir("build/gen")
 
-val generateNOX3Lexer by tasks.registering(GenerateLexerTask::class) {
+val generateLexer by tasks.registering(GenerateLexerTask::class) {
     sourceFile.set(file("src/main/grammars/NOX3.flex"))
-    targetOutputDir.set(layout.buildDirectory.dir("gen/com/enterscript/nox3languageplugin/language/lexer"))
+    targetOutputDir.set(layout.buildDirectory.dir("gen"))
     purgeOldFiles.set(true)
 }
 
-val generateNOX3Parser by tasks.registering(GenerateParserTask::class) {
+val generateParser by tasks.registering(GenerateParserTask::class) {
     sourceFile.set(file("src/main/grammars/NOX3.bnf"))
     targetRootOutputDir.set(layout.buildDirectory.dir("gen"))
     pathToParser.set("com/enterscript/nox3languageplugin/language/psi/impl/parser/NOX3Parser")
@@ -72,7 +72,7 @@ val generateNOX3Parser by tasks.registering(GenerateParserTask::class) {
 }
 
 tasks.withType<KotlinCompile>().configureEach {
-    dependsOn(generateNOX3Lexer, generateNOX3Parser)
+    dependsOn(generateLexer, generateParser)
 }
 
 changelog {
