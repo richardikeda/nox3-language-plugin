@@ -633,21 +633,27 @@ class_body ::= declaration*
 instance_decl ::= INSTANCE IDENTIFIER {
     pin=2
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
-    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Instance"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Instance, com.intellij.psi.StubBasedPsiElement<com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStub>"
+    stubClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStub"
+    elementTypeClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStubElementType"
     methods=[getName setName getNameIdentifier]
 }
 
 global_var_decl ::= VAR IDENTIFIER (SEPARATOR expression)? {
     pin=2
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
-    implements="com.enterscript.nox3languageplugin.language.psi.NOX3GlobalVar"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3GlobalVar, com.intellij.psi.StubBasedPsiElement<com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStub>"
+    stubClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStub"
+    elementTypeClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStubElementType"
     methods=[getName setName getNameIdentifier]
 }
 
 local_var_decl ::= LOCAL IDENTIFIER (SEPARATOR expression)? {
     pin=2
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
-    implements="com.enterscript.nox3languageplugin.language.psi.NOX3LocalVar"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3LocalVar, com.intellij.psi.StubBasedPsiElement<com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStub>"
+    stubClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStub"
+    elementTypeClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStubElementType"
     methods=[getName setName getNameIdentifier]
 }
 
