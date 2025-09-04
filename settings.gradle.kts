@@ -1,5 +1,6 @@
 import org.jetbrains.intellij.platform.gradle.extensions.IntelliJPlatformRepositoriesExtension
 import org.jetbrains.intellij.platform.gradle.extensions.intellijPlatform
+import org.gradle.api.initialization.resolve.RepositoriesMode
 
 IntelliJPlatformRepositoriesExtension.register(settings, settings.pluginManagement.repositories)
 
@@ -14,6 +15,7 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         mavenCentral()
         intellijPlatform {
