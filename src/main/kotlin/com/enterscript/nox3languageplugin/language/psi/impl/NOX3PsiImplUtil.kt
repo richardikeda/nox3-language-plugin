@@ -16,7 +16,7 @@ object NOX3PsiImplUtil {
     fun setName(element: NOX3NamedElement, newName: String): PsiElement {
         val idNode = element.node.findChildByType(NOX3Types.IDENTIFIER)
         if (idNode != null) {
-            val newId = NOX3ElementFactory.createIdentifier(element.project, newName)
+            val newId = NOX3ElementFactory.createIdentifier(element, newName)
             element.node.replaceChild(idNode, newId.node)
         }
         return element
