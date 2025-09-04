@@ -13,6 +13,10 @@ class NOX3ColorSettingsPage : ColorSettingsPage {
     companion object {
         private val DESCRIPTORS = arrayOf(
             AttributesDescriptor("Keyword", NOX3SyntaxHighlighter.KEYWORD),
+            AttributesDescriptor("String", NOX3SyntaxHighlighter.STRING),
+            AttributesDescriptor("Number", NOX3SyntaxHighlighter.NUMBER),
+            AttributesDescriptor("Comment", NOX3SyntaxHighlighter.COMMENT),
+            AttributesDescriptor("Separator", NOX3SyntaxHighlighter.SEPARATOR),
             AttributesDescriptor("Identifier", NOX3SyntaxHighlighter.IDENTIFIER),
             AttributesDescriptor("Bad value", NOX3SyntaxHighlighter.BAD_CHARACTER)
         )
@@ -23,6 +27,14 @@ class NOX3ColorSettingsPage : ColorSettingsPage {
     override fun getDisplayName(): String = "X3"
     override fun getIcon(): Icon? = NOX3Icons.Icon.FileType
     override fun getHighlighter(): SyntaxHighlighter = NOX3SyntaxHighlighter()
-    override fun getDemoText(): String = "module Demo\nfunction foo\nvar bar"
+    override fun getDemoText(): String = """
+        module Demo
+        function greet:demo
+            var message = "hello"
+            var count = 42
+            if count = 42
+                # sample comment
+            endif
+        """.trimIndent()
     override fun getAdditionalHighlightingTagToDescriptorMap(): MutableMap<String, TextAttributesKey>? = null
 }

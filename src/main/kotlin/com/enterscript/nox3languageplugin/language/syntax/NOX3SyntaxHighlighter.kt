@@ -21,9 +21,13 @@ class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
         val IDENTIFIER: TextAttributesKey = createTextAttributesKey("NOX3_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER)
         val NUMBER: TextAttributesKey = createTextAttributesKey("NOX3_NUMBER", DefaultLanguageHighlighterColors.NUMBER)
         val STRING: TextAttributesKey = createTextAttributesKey("NOX3_STRING", DefaultLanguageHighlighterColors.STRING)
+        val NUMBER: TextAttributesKey = createTextAttributesKey("NOX3_NUMBER", DefaultLanguageHighlighterColors.NUMBER)
         val COMMENT: TextAttributesKey = createTextAttributesKey("NOX3_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
         val SEPARATOR: TextAttributesKey = createTextAttributesKey("NOX3_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
         val BAD_CHARACTER: TextAttributesKey = createTextAttributesKey("NOX3_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
+        val SEPARATOR: TextAttributesKey = createTextAttributesKey("NOX3_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+        val IDENTIFIER: TextAttributesKey = createTextAttributesKey("NOX3_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER)
+
 
         private val ATTRIBUTES = mapOf<IElementType, TextAttributesKey>(
             NOX3Types.MODULE to KEYWORD,
