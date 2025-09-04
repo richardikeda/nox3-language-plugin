@@ -3,6 +3,7 @@ import org.jetbrains.intellij.platform.gradle.extensions.intellijPlatform
 import org.gradle.api.initialization.resolve.RepositoriesMode
 
 IntelliJPlatformRepositoriesExtension.register(settings, settings.pluginManagement.repositories)
+IntelliJPlatformRepositoriesExtension.register(settings, settings.dependencyResolutionManagement.repositories)
 
 pluginManagement {
     repositories {
