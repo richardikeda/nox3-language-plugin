@@ -20,7 +20,7 @@ class NOX3CompletionContributor : CompletionContributor() {
         // Top level keywords and glossary terms
         extend(
             CompletionType.BASIC,
-            PlatformPatterns.psiElement(NOX3Types.IDENTIFIER)
+            PlatformPatterns.psiElement(NOX3Types.KEY)
                 .withLanguage(NOX3Language.INSTANCE)
                 .withSuperParent(2, PsiFile::class.java),
             object : CompletionProvider<CompletionParameters>() {
@@ -59,7 +59,7 @@ class NOX3CompletionContributor : CompletionContributor() {
         // Variables and properties from project stubs
         extend(
             CompletionType.BASIC,
-            PlatformPatterns.psiElement(NOX3Types.IDENTIFIER)
+            PlatformPatterns.psiElement(NOX3Types.KEY)
                 .withLanguage(NOX3Language.INSTANCE)
                 .andNot(
                     PlatformPatterns.psiElement()
@@ -94,7 +94,7 @@ class NOX3CompletionContributor : CompletionContributor() {
             KeywordStatus.Unknown to 5
         )
 
-        private val KEYWORDS = listOf("MODULE", "FUNCTION", "VAR", "IF", "ENDIF", "FOR", "ENDFOR")
+        private val KEYWORDS = listOf("KEY")
         private val SYMBOLS = listOf("=", "(", ")", ",")
 
         private fun iconFor(family: KeywordFamily): Icon = when (family) {
