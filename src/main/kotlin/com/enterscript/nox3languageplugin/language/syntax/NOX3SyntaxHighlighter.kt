@@ -20,9 +20,11 @@ class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
     companion object {
         val KEYWORD: TextAttributesKey = createTextAttributesKey("NOX3_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD)
         val STRING: TextAttributesKey = createTextAttributesKey("NOX3_STRING", DefaultLanguageHighlighterColors.STRING)
+        val NUMBER: TextAttributesKey = createTextAttributesKey("NOX3_NUMBER", DefaultLanguageHighlighterColors.NUMBER)
         val COMMENT: TextAttributesKey = createTextAttributesKey("NOX3_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
         val BAD_CHARACTER: TextAttributesKey = createTextAttributesKey("NOX3_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
-        private val SEPARATOR: TextAttributesKey = createTextAttributesKey("NOX3_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+        val SEPARATOR: TextAttributesKey = createTextAttributesKey("NOX3_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+        val IDENTIFIER: TextAttributesKey = createTextAttributesKey("NOX3_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER)
 
         private val keys = HashMap<IElementType, TextAttributesKey>().apply {
             listOf(
@@ -32,6 +34,8 @@ class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
                 NOX3Types.USER, NOX3Types.SYSDATE
             ).forEach { put(it, KEYWORD) }
             put(NOX3Types.STRING, STRING)
+            put(NOX3Types.NUMBER, NUMBER)
+            put(NOX3Types.IDENTIFIER, IDENTIFIER)
             put(NOX3Types.COMMENT, COMMENT)
             put(NOX3Types.SEPARATOR, SEPARATOR)
             put(TokenType.BAD_CHARACTER, BAD_CHARACTER)
