@@ -36,6 +36,21 @@ This project requires **JDK 17**. The Gradle wrapper is configured for Gradle
 
 The produced plugin distribution is available under `build/distributions`.
 
+## Release
+
+The release workflow relies on the GitHub secrets `PUBLISH_TOKEN`,
+`CERTIFICATE_CHAIN`, `PRIVATE_KEY`, and `PRIVATE_KEY_PASSWORD`. Multi-line
+values like `CERTIFICATE_CHAIN` and `PRIVATE_KEY` must be stored in Base64
+format. To encode a file before adding it as a secret, run:
+
+```bash
+base64 -w0 path/to/yourfile > encoded.txt
+```
+
+Copy the single-line output and use it as the secret value. The workflow will
+decode the values and supply them to the `signPlugin` and `publishPlugin`
+tasks.
+
 ## Contributing
 
 Before contributing, please read the [CONTRIBUTING](CONTRIBUTING.md) guide and our [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md).
