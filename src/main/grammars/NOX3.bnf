@@ -1,6 +1,6 @@
 // NOX3 grammar specification. This file is maintained manually.
 {
-  parserClass="com.enterscript.nox3languageplugin.language.psi.impl.parser.NOX3Parser"
+  parserClass="com.enterscript.nox3languageplugin.language.parser.NOX3Parser"
 
   extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
@@ -10,8 +10,6 @@
   psiImplPackage="com.enterscript.nox3languageplugin.language.psi.impl"
 
   elementTypeHolderClass="com.enterscript.nox3languageplugin.language.psi.NOX3Types"
-  elementTypeClass="com.enterscript.nox3languageplugin.language.psi.NOX3ElementType"
-  tokenTypeClass="com.enterscript.nox3languageplugin.language.psi.NOX3TokenType"
 
   psiImplUtilClass="com.enterscript.nox3languageplugin.language.psi.impl.NOX3PsiImplUtil"
 }

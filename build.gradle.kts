@@ -70,7 +70,7 @@ val generateNox3Lexer by tasks.registering(GenerateLexer::class) {
 val generateNox3Parser by tasks.registering(GenerateParser::class) {
     sourceFile.set(file("src/main/grammars/NOX3.bnf"))
     targetRootOutputDir.set(layout.buildDirectory.dir("gen"))
-    pathToParser.set("com/enterscript/nox3languageplugin/language/psi/impl/parser/NOX3Parser")
+    pathToParser.set("com/enterscript/nox3languageplugin/language/parser/NOX3Parser")
     pathToPsiRoot.set("com/enterscript/nox3languageplugin/language/psi")
     purgeOldFiles.set(true)
 }
