@@ -20,10 +20,10 @@ class NOX3Annotator : Annotator {
         val info = X3RuleService.keywordInfo(token) ?: return
 
         val (severity, message) = when (info.status) {
-            X3RuleService.KeywordStatus.Internal ->
+            KeywordStatus.Internal ->
                 HighlightSeverity.WARNING to "$token is internal"
-            X3RuleService.KeywordStatus.Deprecated,
-            X3RuleService.KeywordStatus.DeprecatedClassic ->
+            KeywordStatus.Deprecated,
+            KeywordStatus.DeprecatedClassic ->
                 HighlightSeverity.WEAK_WARNING to "$token is deprecated"
             else -> return
         }

@@ -52,18 +52,18 @@ class NOX3CompletionContributor : CompletionContributor() {
 
     private companion object {
         private val STATUS_ORDER = mapOf(
-            X3RuleService.KeywordStatus.Public to 0,
-            X3RuleService.KeywordStatus.New to 1,
-            X3RuleService.KeywordStatus.Internal to 2,
-            X3RuleService.KeywordStatus.Deprecated to 3,
-            X3RuleService.KeywordStatus.DeprecatedClassic to 4,
-            X3RuleService.KeywordStatus.Unknown to 5
+            KeywordStatus.Public to 0,
+            KeywordStatus.New to 1,
+            KeywordStatus.Internal to 2,
+            KeywordStatus.Deprecated to 3,
+            KeywordStatus.DeprecatedClassic to 4,
+            KeywordStatus.Unknown to 5
         )
 
-        private fun iconFor(family: X3RuleService.KeywordFamily): Icon = when (family) {
-            X3RuleService.KeywordFamily.FUNCTION -> AllIcons.Nodes.Function
-            X3RuleService.KeywordFamily.INSTRUCTION -> AllIcons.Nodes.Method
-            X3RuleService.KeywordFamily.SYSVAR -> AllIcons.Nodes.Variable
+        private fun iconFor(family: KeywordFamily): Icon = when (family) {
+            KeywordFamily.FUNCTION -> AllIcons.Nodes.Function
+            KeywordFamily.INSTRUCTION -> AllIcons.Nodes.Method
+            KeywordFamily.SYSVAR -> AllIcons.Nodes.Variable
             else -> AllIcons.Nodes.Property
         }
     }
