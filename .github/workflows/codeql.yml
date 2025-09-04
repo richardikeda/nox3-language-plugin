@@ -13,6 +13,10 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
       - uses: github/codeql-action/init@v3
-        with: { languages: 'java' }  # ou kotlin/java, ajuste conforme o projeto
+        with: { languages: 'kotlin' }  # ou kotlin/java, ajuste conforme o projeto
       - uses: github/codeql-action/analyze@v3
