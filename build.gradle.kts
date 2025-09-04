@@ -54,7 +54,12 @@ dependencies {
     }
 }
 
-sourceSets["main"].kotlin.srcDir("build/gen")
+sourceSets {
+    main {
+        java.srcDir(layout.buildDirectory.dir("gen"))
+        kotlin.srcDir("build/gen")
+    }
+}
 
 val generateNox3Lexer by tasks.registering(GenerateLexer::class) {
     sourceFile.set(file("src/main/grammars/NOX3.flex"))

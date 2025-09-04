@@ -2,7 +2,9 @@
 .idea
 .intellijPlatform/
 build/
-build/gen/
 buildSrc/build/
+
+# Generated sources
+build/gen/
 /src/test/kotlin/com/enterscript/noX3LanguagePlugin/MyPluginTest.kt
 /src/main/code_samples/
