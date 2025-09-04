@@ -2,6 +2,7 @@ import org.jetbrains.changelog.Changelog
 import org.jetbrains.grammarkit.tasks.GenerateLexer
 import org.jetbrains.grammarkit.tasks.GenerateParserTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.gradle.api.tasks.compile.JavaCompile
 
 fun properties(key: String) = project.findProperty(key).toString()
 
@@ -116,4 +117,9 @@ tasks {
 tasks.withType<KotlinCompile>().configureEach {
     dependsOn(generateNox3Lexer)
     dependsOn("generateNox3Parser")
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    sourceCompatibility = "17"
+    targetCompatibility = "17"
 }

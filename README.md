@@ -13,10 +13,14 @@ Thanks for your contributions!
 
 <!-- Plugin description end -->
 
+## Requirements
+
+This project requires **JDK 17**.
+
 ## Build
 
-This project requires **JDK 17**. The Gradle wrapper is configured for Gradle
-8.14 and will download it automatically. To compile and run the tests locally:
+The Gradle wrapper is configured for Gradle 8.14 and will download it
+automatically. To compile and run the tests locally:
 
 ```bash
 ./gradlew build
