@@ -13,7 +13,7 @@
 ### Added
 - Plugin Name
 - File Icon
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+- Initial scaffold created from [IntelliJ Platform Plugin Template][template]
 - Base classes for NOX3 annotator, reference contributor, refactoring support, and line marker provider
 
 ### Changed
@@ -31,3 +31,4 @@
 
 [Unreleased]: https://github.com/richardikeda/nox3-language-plugin/compare/v0.0.2...HEAD
 [0.0.2]: https://github.com/richardikeda/nox3-language-plugin/releases/tag/v0.0.2
+[template]: https://github.com/JetBrains/intellij-platform-plugin-template
