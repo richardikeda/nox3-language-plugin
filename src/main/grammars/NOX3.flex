@@ -45,6 +45,7 @@ DECIMAL=(?i:Decimal)
 INTEGER=(?i:Integer)
 DATE=(?i:Date)
 
+EQUAL==
 PLUS=\+
 MINUS=-
 LPAREN=\(
@@ -81,7 +82,7 @@ COLON=:
 {INTEGER}     { return NOX3Types.INTEGER; }
 {DATE}        { return NOX3Types.DATE; }
 
-"="           { return NOX3Types.SEPARATOR; }
+{EQUAL}       { return NOX3Types.SEPARATOR; }
 {PLUS}        { return NOX3Types.PLUS; }
 {MINUS}       { return NOX3Types.MINUS; }
 {LPAREN}      { return NOX3Types.LPAREN; }
