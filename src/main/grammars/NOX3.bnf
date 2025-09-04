@@ -604,11 +604,11 @@ tokens = [
 file ::= declaration*
 
 declaration ::= subprog_decl
+              | function_decl
               | class_decl
               | global_var_decl
               | local_var_decl
               | instance_decl
-              | statement
               | COMMENT
               | CRLF
 
@@ -617,6 +617,14 @@ subprog_decl ::= SUBPROG IDENTIFIER parameter_list? block END {
     recoverWhile=subprog_decl_recover
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
     implements="com.enterscript.nox3languageplugin.language.psi.NOX3Subprog"
+    methods=[getName setName getNameIdentifier]
+}
+
+function_decl ::= FUNCTION IDENTIFIER parameter_list? block END {
+    pin=2
+    recoverWhile=function_decl_recover
+    mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Function"
     methods=[getName setName getNameIdentifier]
 }
 
@@ -665,9 +673,14 @@ local_var_decl ::= LOCAL IDENTIFIER (SEPARATOR expression)? {
     methods=[getName setName getNameIdentifier]
 }
 
-statement ::= if_statement
+statement ::= variable_declaration
+            | call_statement
+            | if_statement
+            | case_statement
+            | assignment_statement
             | for_statement
-            | expression
+            | COMMENT
+            | CRLF
 
 if_statement ::= IF expression THEN block (ELSE block)? ENDIF {
     pin=1
@@ -677,11 +690,38 @@ for_statement ::= FOR IDENTIFIER ASSIGN expression TO expression block NEXT {
     pin=1
 }
 
-block ::= declaration*
+case_statement ::= CASE expression block (ELSE block)? ENDCASE {
+    pin=1
+}
 
-function_call ::= (IDENTIFIER | PRINT | LEN | SQRT) '(' expression? ')'
+assignment_statement ::= IDENTIFIER ASSIGN expression {
+    pin=2
+}
 
-expression ::= NUMBER | STRING | IDENTIFIER | USER | SYSDATE | function_call
+call_statement ::= function_call
+
+variable_declaration ::= global_var_decl
+                       | local_var_decl
+
+block ::= statement*
+
+function_call ::= (property_access | IDENTIFIER | PRINT | LEN | SQRT) LPAREN argument_list? RPAREN
+
+argument_list ::= expression (COMMA expression)*
+
+property_access ::= IDENTIFIER (DOT IDENTIFIER)+
+
+expression ::= primary_expression (binary_operator primary_expression)*
+
+primary_expression ::= NUMBER
+                     | STRING
+                     | function_call
+                     | property_access
+                     | IDENTIFIER
+                     | LPAREN expression RPAREN
+
+binary_operator ::= PLUS | MINUS | STAR | DIV | NEQ
 
 private subprog_decl_recover ::= !(END)
 private class_decl_recover ::= !(END)
+private function_decl_recover ::= !(END)
