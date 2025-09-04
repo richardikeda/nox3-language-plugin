@@ -587,9 +587,35 @@ tokens = [
   ZONSUI
 ]
 
-file ::= element_*
+file ::= (module_decl | element_)*
 
-private element_ ::= (property | case_block | for_block | if_block | repeat_block | while_block | COMMENT | CRLF)
+private element_ ::= (function_decl | variable_decl | property | case_block | for_block | if_block | repeat_block | while_block | COMMENT | CRLF)
+
+module_decl ::= MODULE IDENTIFIER element_* END {
+    pin=2
+    recoverWhile=module_decl_recover
+    mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Module"
+    methods=[getName setName getNameIdentifier]
+}
+
+function_decl ::= FUNCTION IDENTIFIER element_* END {
+    pin=2
+    recoverWhile=function_decl_recover
+    mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Function"
+    methods=[getName setName getNameIdentifier]
+}
+
+variable_decl ::= (VAR | VARIABLE) IDENTIFIER (SEPARATOR expression)? {
+    pin=2
+    mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Variable"
+    methods=[getName setName getNameIdentifier]
+}
+
+private module_decl_recover ::= !(END)
+private function_decl_recover ::= !(END)
 
 property ::= IDENTIFIER SEPARATOR value {
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
