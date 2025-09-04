@@ -20,7 +20,7 @@ group = properties("pluginGroup")
 version = properties("pluginVersion")
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(17)
 }
 
 repositories {

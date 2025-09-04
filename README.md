@@ -27,9 +27,8 @@ Thanks for your contributions!
 
 ## Build
 
-This project requires **JDK 17 or newer**. The Gradle wrapper is configured for
-Gradle 8.14 and will download it automatically. To compile and run the tests
-locally:
+This project requires **JDK 17**. The Gradle wrapper is configured for Gradle
+8.14 and will download it automatically. To compile and run the tests locally:
 
 ```bash
 ./gradlew build
