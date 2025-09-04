@@ -1,9 +1,17 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.enterscript.nox3languageplugin</id>
-    <name>Non Official X3 Language</name>
+    <name>NOX3 Language Support</name>
     <vendor email="richard@enterscript.com" url="https://enterscript.com">Richard Ikeda</vendor>
-    <description><![CDATA[ Non Official X3 Plugin.<br> <em>Basic X3 editor for IntelliJ</em> ]]></description>
+    <description><![CDATA[
+        <p>Comprehensive support for the NOX3 4GL language inside IntelliJ-based IDEs.</p>
+        <ul>
+            <li>Syntax highlighting and custom color schemes</li>
+            <li>Code completion and quick documentation</li>
+            <li>Navigation, refactorings and inspections</li>
+        </ul>
+        <p>Discover more on <a href="https://github.com/richardikeda/nox3-language-plugin">GitHub</a> and enhance your productivity with <strong>NOX3 Language Support</strong>.</p>
+    ]]></description>
     <icon dark="META-INF/pluginIcon_dark.svg">META-INF/pluginIcon.svg</icon>
 
     <!-- Product and plugin compatibility requirements -->
