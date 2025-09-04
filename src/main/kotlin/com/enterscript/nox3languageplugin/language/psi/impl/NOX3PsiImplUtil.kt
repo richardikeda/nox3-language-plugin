@@ -8,13 +8,13 @@ import com.intellij.psi.PsiElement
 object NOX3PsiImplUtil {
     @JvmStatic
     fun getName(element: NOX3NamedElement): String? {
-        val idNode = element.node.findChildByType(NOX3Types.IDENTIFIER)
+        val idNode = element.node.findChildByType(NOX3Types.KEY)
         return idNode?.text
     }
 
     @JvmStatic
     fun setName(element: NOX3NamedElement, newName: String): PsiElement {
-        val idNode = element.node.findChildByType(NOX3Types.IDENTIFIER)
+        val idNode = element.node.findChildByType(NOX3Types.KEY)
         if (idNode != null) {
             val newId = NOX3ElementFactory.createIdentifier(element, newName)
             element.node.replaceChild(idNode, newId.node)
@@ -24,7 +24,7 @@ object NOX3PsiImplUtil {
 
     @JvmStatic
     fun getNameIdentifier(element: NOX3NamedElement): PsiElement? {
-        val idNode = element.node.findChildByType(NOX3Types.IDENTIFIER)
+        val idNode = element.node.findChildByType(NOX3Types.KEY)
         return idNode?.psi
     }
 
