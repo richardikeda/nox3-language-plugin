@@ -8,6 +8,7 @@ IntelliJPlatformRepositoriesExtension.register(settings, settings.dependencyReso
 pluginManagement {
     repositories {
         mavenCentral()
+        gradlePluginPortal()
         intellijPlatform {
             releases()
             marketplace()
@@ -19,6 +20,7 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         mavenCentral()
+        gradlePluginPortal()
         intellijPlatform {
             releases()
             marketplace()

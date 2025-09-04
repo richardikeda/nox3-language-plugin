@@ -1,5 +1,4 @@
 import org.jetbrains.changelog.Changelog
-import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 import org.jetbrains.grammarkit.tasks.GenerateLexer
 import org.jetbrains.grammarkit.tasks.GenerateParser
 
@@ -8,7 +7,7 @@ fun properties(key: String) = project.findProperty(key).toString()
 plugins {
     id("java")
     alias(libs.plugins.kotlin)
-    alias(libs.plugins.intelliJPlatform)
+    id("org.jetbrains.intellij.platform")
     alias(libs.plugins.changelog)
     alias(libs.plugins.qodana)
     alias(libs.plugins.kover)
@@ -32,25 +31,9 @@ repositories {
 dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.opentest4j)
-
     intellijPlatform {
-        create(properties("platformType"), properties("platformVersion"))
-        plugins(
-            providers.gradleProperty("platformPlugins").map {
-                it.split(',').map(String::trim).filter(String::isNotEmpty)
-            }
-        )
-        bundledPlugins(
-            providers.gradleProperty("platformBundledPlugins").map {
-                it.split(',').map(String::trim).filter(String::isNotEmpty)
-            }
-        )
-        bundledModules(
-            providers.gradleProperty("platformBundledModules").map {
-                it.split(',').map(String::trim).filter(String::isNotEmpty)
-            }
-        )
-        testFramework(TestFrameworkType.Platform)
+        create(type = properties("platformType"), version = properties("platformVersion"))
+        intellijPlugin(properties("platformPlugins"))
     }
 }
 
