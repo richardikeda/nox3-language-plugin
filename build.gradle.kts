@@ -1,6 +1,6 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.grammarkit.tasks.GenerateLexer
-import org.jetbrains.grammarkit.tasks.GenerateParser
+import org.jetbrains.grammarkit.tasks.GenerateParserTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = project.findProperty(key).toString()
@@ -51,12 +51,11 @@ val generateNox3Lexer by tasks.registering(GenerateLexer::class) {
     purgeOldFiles.set(true)
 }
 
-val generateNox3Parser by tasks.registering(GenerateParser::class) {
-    source.set(file("src/main/grammars/NOX3.bnf"))
+tasks.register<GenerateParserTask>("generateNox3Parser") {
+    sourceFile.set(file("src/main/grammars/NOX3.bnf"))
     targetRoot.set(layout.buildDirectory.dir("gen"))
-    pathToParser.set("/com/enterscript/nox3languageplugin/language/parser/NOX3Parser.java")
-    pathToPsiRoot.set("/com/enterscript/nox3languageplugin/language/psi")
-    purgeOldFiles.set(true)
+    pathToParser.set("/com/enterscript/noX3LanguagePlugin/language/parser/NOX3Parser.java")
+    pathToPsiRoot.set("/com/enterscript/noX3LanguagePlugin/language/psi")
 }
 
 changelog {
@@ -115,5 +114,6 @@ tasks {
 }
 
 tasks.withType<KotlinCompile>().configureEach {
-    dependsOn(generateNox3Lexer, generateNox3Parser)
+    dependsOn(generateNox3Lexer)
+    dependsOn("generateNox3Parser")
 }
