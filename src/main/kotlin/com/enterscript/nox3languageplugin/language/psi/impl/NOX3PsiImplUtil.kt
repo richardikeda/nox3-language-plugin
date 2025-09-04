@@ -2,6 +2,7 @@ package com.enterscript.nox3languageplugin.language.psi.impl
 
 import com.enterscript.nox3languageplugin.language.psi.*
 import com.enterscript.nox3languageplugin.language.psi.NOX3Types
+import com.enterscript.nox3languageplugin.language.psi.NOX3ElementFactory
 import com.intellij.psi.PsiElement
 
 object NOX3PsiImplUtil {
@@ -13,6 +14,11 @@ object NOX3PsiImplUtil {
 
     @JvmStatic
     fun setName(element: NOX3NamedElement, newName: String): PsiElement {
+        val idNode = element.node.findChildByType(NOX3Types.IDENTIFIER)
+        if (idNode != null) {
+            val newId = NOX3ElementFactory.createIdentifier(element.project, newName)
+            element.node.replaceChild(idNode, newId.node)
+        }
         return element
     }
 
