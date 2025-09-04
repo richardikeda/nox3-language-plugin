@@ -1,6 +1,7 @@
 package com.enterscript.nox3languageplugin.language.syntax
 
 import com.enterscript.nox3languageplugin.language.lexer.NOX3LexerAdapter
+import com.enterscript.nox3languageplugin.language.lexer._NOX3Lexer
 import com.enterscript.nox3languageplugin.language.psi.NOX3Types
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
@@ -39,5 +40,5 @@ class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> = pack(keys[tokenType])
 
-    override fun getHighlightingLexer(): Lexer = NOX3LexerAdapter()
+    override fun getHighlightingLexer(): Lexer = NOX3LexerAdapter(_NOX3Lexer(null))
 }

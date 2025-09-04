@@ -2,9 +2,10 @@ package com.enterscript.nox3languageplugin.language.parser
 
 import com.enterscript.nox3languageplugin.language.NOX3Language
 import com.enterscript.nox3languageplugin.language.lexer.NOX3LexerAdapter
+import com.enterscript.nox3languageplugin.language.lexer._NOX3Lexer
+import com.enterscript.nox3languageplugin.language.parser.NOX3Parser
 import com.enterscript.nox3languageplugin.language.psi.NOX3File
 import com.enterscript.nox3languageplugin.language.psi.NOX3Types
-import com.enterscript.nox3languageplugin.language.psi.impl.parser.NOX3Parser
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
 import com.intellij.lang.PsiParser
@@ -23,7 +24,7 @@ class NOX3ParserDefinition : ParserDefinition {
         val FILE: IFileElementType = IFileElementType(NOX3Language.INSTANCE)
     }
 
-    override fun createLexer(project: Project) = NOX3LexerAdapter()
+    override fun createLexer(project: Project) = NOX3LexerAdapter(_NOX3Lexer(null))
     override fun getWhitespaceTokens(): TokenSet = WHITE_SPACES
     override fun getCommentTokens(): TokenSet = COMMENTS
     override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY

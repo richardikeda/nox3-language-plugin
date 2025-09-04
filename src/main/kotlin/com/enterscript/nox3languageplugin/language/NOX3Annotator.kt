@@ -5,7 +5,6 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
-import com.enterscript.nox3languageplugin.language.psi.NOX3TokenType
 import com.enterscript.nox3languageplugin.language.ReplaceKeywordQuickFix
 
 /**
@@ -14,7 +13,6 @@ import com.enterscript.nox3languageplugin.language.ReplaceKeywordQuickFix
 class NOX3Annotator : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (element !is LeafPsiElement) return
-        if (element.elementType !is NOX3TokenType) return
 
         val token = element.text.lowercase()
         val info = X3RuleService.keywordInfo(token) ?: return
