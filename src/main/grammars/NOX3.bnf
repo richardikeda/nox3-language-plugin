@@ -607,8 +607,10 @@ function_decl ::= FUNCTION IDENTIFIER element_* END {
 
 variable_decl ::= (VAR | VARIABLE) IDENTIFIER (SEPARATOR expression)? {
     pin=2
+    stubClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStub"
+    elementTypeClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStubElementType"
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
-    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Variable"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Variable, com.intellij.psi.stubs.StubBasedPsiElement<com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStub>"
     methods=[getName setName getNameIdentifier]
 }
 
@@ -616,8 +618,10 @@ private module_decl_recover ::= !(END)
 private function_decl_recover ::= !(END)
 
 property ::= IDENTIFIER SEPARATOR value {
+    stubClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3PropertyStub"
+    elementTypeClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3PropertyStubElementType"
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
-    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Property"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Property, com.intellij.psi.stubs.StubBasedPsiElement<com.enterscript.nox3languageplugin.language.psi.stubs.NOX3PropertyStub>"
     methods=[getKey getValue getName setName getNameIdentifier]
 }
 

@@ -1,33 +1,51 @@
 package com.enterscript.nox3languageplugin.language
 
-import com.enterscript.nox3languageplugin.language.psi.NOX3File
+import com.enterscript.nox3languageplugin.language.psi.NOX3Property
 import com.enterscript.nox3languageplugin.language.psi.NOX3Variable
+import com.enterscript.nox3languageplugin.language.psi.stubs.NOX3PropertyStubElementType
+import com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStubElementType
 import com.intellij.openapi.project.Project
-import com.intellij.psi.PsiManager
-import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
-import com.intellij.psi.util.PsiTreeUtil
+import com.intellij.psi.stubs.StubIndex
 
 open class NOX3Util {
     companion object {
-        fun findVariables(project: Project, name: String): List<NOX3Variable> {
+        fun findVariables(project: Project, name: String): Collection<NOX3Variable> =
+            StubIndex.getElements(
+                NOX3VariableStubElementType.INDEX_KEY,
+                name,
+                project,
+                GlobalSearchScope.allScope(project),
+                NOX3Variable::class.java
+            )
+
+        fun findVariables(project: Project): Collection<NOX3Variable> {
+            val index = StubIndex.getInstance()
+            val scope = GlobalSearchScope.allScope(project)
+            val key = NOX3VariableStubElementType.INDEX_KEY
             val result = mutableListOf<NOX3Variable>()
-            val virtualFiles = FileTypeIndex.getFiles(NOX3FileType.INSTANCE, GlobalSearchScope.allScope(project))
-            for (virtualFile in virtualFiles) {
-                val file = PsiManager.getInstance(project).findFile(virtualFile) as? NOX3File ?: continue
-                val variables = PsiTreeUtil.findChildrenOfType(file, NOX3Variable::class.java)
-                variables.filterTo(result) { it.name == name }
+            for (variableName in index.getAllKeys(key, project)) {
+                result.addAll(index.getElements(key, variableName, project, scope, NOX3Variable::class.java))
             }
             return result
         }
 
-        fun findVariables(project: Project): List<NOX3Variable> {
-            val result = mutableListOf<NOX3Variable>()
-            val virtualFiles = FileTypeIndex.getFiles(NOX3FileType.INSTANCE, GlobalSearchScope.allScope(project))
-            for (virtualFile in virtualFiles) {
-                val file = PsiManager.getInstance(project).findFile(virtualFile) as? NOX3File ?: continue
-                val variables = PsiTreeUtil.findChildrenOfType(file, NOX3Variable::class.java)
-                result.addAll(variables)
+        fun findProperties(project: Project, name: String): Collection<NOX3Property> =
+            StubIndex.getElements(
+                NOX3PropertyStubElementType.INDEX_KEY,
+                name,
+                project,
+                GlobalSearchScope.allScope(project),
+                NOX3Property::class.java
+            )
+
+        fun findProperties(project: Project): Collection<NOX3Property> {
+            val index = StubIndex.getInstance()
+            val scope = GlobalSearchScope.allScope(project)
+            val key = NOX3PropertyStubElementType.INDEX_KEY
+            val result = mutableListOf<NOX3Property>()
+            for (propertyName in index.getAllKeys(key, project)) {
+                result.addAll(index.getElements(key, propertyName, project, scope, NOX3Property::class.java))
             }
             return result
         }
