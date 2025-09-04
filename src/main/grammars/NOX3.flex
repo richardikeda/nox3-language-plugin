@@ -282,6 +282,7 @@ FROM=FROM
 FSTAT=FSTAT
 FUNC=FUNC
 FUNCIU=FUNCIU
+FUNCTION=(?i:function)
 FUNPROG=FUNPROG
 GDATETIME_=GDATETIME\$
 GDAT_=GDAT\$
@@ -384,6 +385,7 @@ MIN=MIN
 MKSTAT=MKSTAT
 MOD=MOD
 MODIFIED=MODIFIED
+MODULE=(?i:module)
 MONTH=MONTH
 MONTH_=MONTH\$
 NAP=NAP
@@ -560,7 +562,7 @@ UUIDENT=UUIDENT
 UUID_=UUID\$
 VAL=VAL
 VALUE=VALUE
-VAR=VAR
+VAR=(?i:var)
 VARIABLE=VARIABLE
 VARINIT=VARINIT
 VARMODE=VARMODE
@@ -849,6 +851,7 @@ ZONSUI=ZONSUI
 {FSTAT}          { return NOX3Types.FSTAT; }
 {FUNC}          { return NOX3Types.FUNC; }
 {FUNCIU}          { return NOX3Types.FUNCIU; }
+{FUNCTION}          { return NOX3Types.FUNCTION; }
 {FUNPROG}          { return NOX3Types.FUNPROG; }
 {GDATETIME_}          { return NOX3Types.GDATETIME_; }
 {GDAT_}          { return NOX3Types.GDAT_; }
@@ -951,6 +954,7 @@ ZONSUI=ZONSUI
 {MKSTAT}          { return NOX3Types.MKSTAT; }
 {MOD}          { return NOX3Types.MOD; }
 {MODIFIED}          { return NOX3Types.MODIFIED; }
+{MODULE}          { return NOX3Types.MODULE; }
 {MONTH}          { return NOX3Types.MONTH; }
 {MONTH_}          { return NOX3Types.MONTH_; }
 {NAP}          { return NOX3Types.NAP; }
