@@ -593,58 +593,81 @@ tokens = [
   ZONSUI
 ]
 
-file ::= (module_decl | element_)*
+file ::= declaration*
 
-private element_ ::= (function_decl | variable_decl | property | case_block | for_block | if_block | repeat_block | while_block | COMMENT | CRLF)
+declaration ::= subprog_decl
+              | class_decl
+              | global_var_decl
+              | local_var_decl
+              | instance_decl
+              | statement
+              | COMMENT
+              | CRLF
 
-module_decl ::= MODULE IDENTIFIER element_* END {
+subprog_decl ::= SUBPROG IDENTIFIER parameter_list? block END {
     pin=2
-    recoverWhile=module_decl_recover
+    recoverWhile=subprog_decl_recover
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
-    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Module"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Subprog"
     methods=[getName setName getNameIdentifier]
 }
 
-function_decl ::= FUNCTION IDENTIFIER element_* END {
-    pin=2
-    recoverWhile=function_decl_recover
+parameter_list ::= LPAREN parameter (COMMA parameter)* RPAREN
+
+parameter ::= IDENTIFIER (SEPARATOR expression)? {
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
-    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Function"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Parameter"
     methods=[getName setName getNameIdentifier]
 }
 
-variable_decl ::= (VAR | VARIABLE) IDENTIFIER (SEPARATOR expression)? {
+class_decl ::= CLASS IDENTIFIER class_body END {
     pin=2
-    stubClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStub"
-    elementTypeClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStubElementType"
+    recoverWhile=class_decl_recover
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
-    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Variable, com.intellij.psi.stubs.StubBasedPsiElement<com.enterscript.nox3languageplugin.language.psi.stubs.NOX3VariableStub>"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Class"
     methods=[getName setName getNameIdentifier]
 }
 
-private module_decl_recover ::= !(END)
-private function_decl_recover ::= !(END)
+class_body ::= declaration*
 
-property ::= IDENTIFIER SEPARATOR value {
-    stubClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3PropertyStub"
-    elementTypeClass="com.enterscript.nox3languageplugin.language.psi.stubs.NOX3PropertyStubElementType"
+instance_decl ::= INSTANCE IDENTIFIER {
+    pin=2
     mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
-    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Property, com.intellij.psi.stubs.StubBasedPsiElement<com.enterscript.nox3languageplugin.language.psi.stubs.NOX3PropertyStub>"
-    methods=[getKey getValue getName setName getNameIdentifier]
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3Instance"
+    methods=[getName setName getNameIdentifier]
 }
 
-case_block ::= CASE element_* (DEFAULT element_*)? (WHEN element_*)? ENDCASE
+global_var_decl ::= VAR IDENTIFIER (SEPARATOR expression)? {
+    pin=2
+    mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3GlobalVar"
+    methods=[getName setName getNameIdentifier]
+}
 
-for_block ::= FOR element_* NEXT
+local_var_decl ::= LOCAL IDENTIFIER (SEPARATOR expression)? {
+    pin=2
+    mixin="com.enterscript.nox3languageplugin.language.psi.impl.NOX3NamedElementImpl"
+    implements="com.enterscript.nox3languageplugin.language.psi.NOX3LocalVar"
+    methods=[getName setName getNameIdentifier]
+}
 
-if_block ::= IF element_* (ELSE element_*)? (ELSIF element_*)? ENDIF
+statement ::= if_statement
+            | for_statement
+            | expression
 
-repeat_block ::= REPEAT element_* UNTIL
+if_statement ::= IF expression THEN block (ELSE block)? ENDIF {
+    pin=1
+}
 
-while_block ::= WHILE element_* WEND
+for_statement ::= FOR IDENTIFIER ASSIGN expression TO expression block NEXT {
+    pin=1
+}
 
-value ::= expression
+block ::= declaration*
 
 function_call ::= (IDENTIFIER | PRINT | LEN | SQRT) '(' expression? ')'
 
 expression ::= NUMBER | STRING | IDENTIFIER | USER | SYSDATE | function_call
+
+private subprog_decl_recover ::= !(END)
+private class_decl_recover ::= !(END)
