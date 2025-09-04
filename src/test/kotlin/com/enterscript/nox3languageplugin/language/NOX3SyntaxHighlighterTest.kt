@@ -5,17 +5,11 @@ import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import kotlin.test.assertEquals
 
 class NOX3SyntaxHighlighterTest : BasePlatformTestCase() {
-    fun testHighlightsTokens() {
-        val highlighter = NOX3SyntaxHighlighter()
-        val lexer = highlighter.highlightingLexer
+    fun testKeywordHighlighting() {
+        myFixture.configureByText("test.nox3", "module Demo")
+        myFixture.checkHighlighting(false, true, false)
 
-        lexer.start("case")
-        assertEquals(NOX3SyntaxHighlighter.KEYWORD, highlighter.getTokenHighlights(lexer.tokenType)[0])
-
-        lexer.start("\"text\"")
-        assertEquals(NOX3SyntaxHighlighter.STRING, highlighter.getTokenHighlights(lexer.tokenType)[0])
-
-        lexer.start("#comment")
-        assertEquals(NOX3SyntaxHighlighter.COMMENT, highlighter.getTokenHighlights(lexer.tokenType)[0])
+        val highlight = myFixture.doHighlighting().first { it.startOffset == 0 && it.endOffset == "module".length }
+        assertEquals(NOX3SyntaxHighlighter.KEYWORD, highlight.forcedTextAttributesKey)
     }
 }
