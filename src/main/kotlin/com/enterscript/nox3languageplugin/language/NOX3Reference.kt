@@ -1,7 +1,7 @@
 package com.enterscript.nox3languageplugin.language
 
 import com.enterscript.nox3languageplugin.icons.NOX3Icons
-import com.enterscript.nox3languageplugin.language.psi.NOX3Variable
+import com.enterscript.nox3languageplugin.language.psi.NOX3Property
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.openapi.util.TextRange
@@ -17,20 +17,20 @@ class NOX3Reference(element: PsiElement, textRange: TextRange) : PsiReferenceBas
 
     override fun multiResolve(incompleteCode: Boolean): Array<ResolveResult> {
         val project = myElement.project
-        val variables: List<NOX3Variable> = NOX3Util.findVariables(project, key)
-        return variables.map { PsiElementResolveResult(it) }.toTypedArray()
+        val properties: List<NOX3Property> = NOX3Util.findProperties(project, key)
+        return properties.map { PsiElementResolveResult(it) }.toTypedArray()
     }
 
     override fun getVariants(): Array<Any> {
         val project = myElement.project
-        val variables: List<NOX3Variable> = NOX3Util.findVariables(project)
+        val properties: List<NOX3Property> = NOX3Util.findProperties(project)
         val variants = mutableListOf<LookupElement>()
-        for (variable in variables) {
-            val name = variable.name
+        for (property in properties) {
+            val name = property.key
             if (!name.isNullOrEmpty()) {
                 variants.add(
-                    LookupElementBuilder.create(variable).withIcon(NOX3Icons.Icon.FileType)
-                        .withTypeText(variable.containingFile.name)
+                    LookupElementBuilder.create(property).withIcon(NOX3Icons.Icon.FileType)
+                        .withTypeText(property.containingFile.name)
                 )
             }
         }

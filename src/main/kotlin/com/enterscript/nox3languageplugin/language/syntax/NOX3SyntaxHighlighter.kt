@@ -17,87 +17,30 @@ import com.intellij.psi.tree.IElementType
  */
 class NOX3SyntaxHighlighter : SyntaxHighlighterBase() {
 
-    companion object {
-        val KEYWORD: TextAttributesKey =
-            createTextAttributesKey("NOX3_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD)
+      companion object {
+          val KEY: TextAttributesKey =
+              createTextAttributesKey("NOX3_KEY", DefaultLanguageHighlighterColors.KEYWORD)
 
-        val IDENTIFIER: TextAttributesKey =
-            createTextAttributesKey("NOX3_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER)
+          val VALUE: TextAttributesKey =
+              createTextAttributesKey("NOX3_VALUE", DefaultLanguageHighlighterColors.STRING)
 
-        val NUMBER: TextAttributesKey =
-            createTextAttributesKey("NOX3_NUMBER", DefaultLanguageHighlighterColors.NUMBER)
+          val SEPARATOR: TextAttributesKey =
+              createTextAttributesKey("NOX3_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
 
-        val STRING: TextAttributesKey =
-            createTextAttributesKey("NOX3_STRING", DefaultLanguageHighlighterColors.STRING)
+          val COMMENT: TextAttributesKey =
+              createTextAttributesKey("NOX3_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
 
-        val COMMENT: TextAttributesKey =
-            createTextAttributesKey("NOX3_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
+          val BAD_CHARACTER: TextAttributesKey =
+              createTextAttributesKey("NOX3_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
 
-        val OPERATOR: TextAttributesKey =
-            createTextAttributesKey("NOX3_OPERATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN)
-
-        val BAD_CHARACTER: TextAttributesKey =
-            createTextAttributesKey("NOX3_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
-
-        private val KEYWORDS = setOf(
-            NOX3Types.SUBPROG,
-            NOX3Types.VALUE,
-            NOX3Types.GLOBAL,
-            NOX3Types.LOCAL,
-            NOX3Types.CLASS,
-            NOX3Types.IF,
-            NOX3Types.THEN,
-            NOX3Types.ELSE,
-            NOX3Types.ENDIF,
-            NOX3Types.FOR,
-            NOX3Types.TO,
-            NOX3Types.NEXT,
-            NOX3Types.CALL,
-            NOX3Types.FROM,
-            NOX3Types.CASE,
-            NOX3Types.WHEN,
-            NOX3Types.ENDCASE,
-            NOX3Types.RETURN,
-            NOX3Types.ONERRGO,
-            NOX3Types.TRBEGIN,
-            NOX3Types.COMMIT,
-            NOX3Types.ROLLBACK,
-            NOX3Types.FILTER,
-            NOX3Types.READ,
-            NOX3Types.UPDATE,
-            NOX3Types.WRITE,
-            NOX3Types.REWRITE,
-            NOX3Types.DELETE,
-            NOX3Types.GOSUB
-        )
-
-        private val OPERATORS = setOf(
-            NOX3Types.SEPARATOR, // '='
-            NOX3Types.PLUS,
-            NOX3Types.MINUS,
-            NOX3Types.STAR,
-            NOX3Types.DIV,
-            NOX3Types.NEQ,
-            NOX3Types.LPAREN,
-            NOX3Types.RPAREN,
-            NOX3Types.LBRACKET,
-            NOX3Types.RBRACKET,
-            NOX3Types.COMMA,
-            NOX3Types.ACTION,
-            NOX3Types.DOT,
-            NOX3Types.COLON
-        )
-
-        private val ATTRIBUTES: Map<IElementType, TextAttributesKey> = buildMap {
-            KEYWORDS.forEach { put(it, KEYWORD) }
-            OPERATORS.forEach { put(it, OPERATOR) }
-            put(NOX3Types.NUMBER, NUMBER)
-            put(NOX3Types.STRING, STRING)
-            put(NOX3Types.IDENTIFIER, IDENTIFIER)
-            put(NOX3Types.COMMENT, COMMENT)
-            put(TokenType.BAD_CHARACTER, BAD_CHARACTER)
-        }
-    }
+          private val ATTRIBUTES: Map<IElementType, TextAttributesKey> = mapOf(
+              NOX3Types.KEY to KEY,
+              NOX3Types.VALUE to VALUE,
+              NOX3Types.SEPARATOR to SEPARATOR,
+              NOX3Types.COMMENT to COMMENT,
+              TokenType.BAD_CHARACTER to BAD_CHARACTER
+          )
+      }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> =
         pack(ATTRIBUTES[tokenType])
